@@ -1,0 +1,51 @@
+package com.rodrigoguerrero.myweather.domain.models
+
+import com.rodrigoguerrero.myweather.data.remote.models.dtos.DayDto
+
+data class Day(
+    val maxTemperatureInCelsius: Double,
+    val maxTemperatureInFahrenheit: Double,
+    val minTemperatureInCelsius: Double,
+    val minTemperatureInFahrenheit: Double,
+    val averageTemperatureInCelsius: Double,
+    val averageTemperatureInFahrenheit: Double,
+    val maxWindSpeedMph: Double,
+    val maxWindSpeedKph: Double,
+    val totalPrecipitationMm: Double,
+    val totalPrecipitationInches: Double,
+    val totalSnowCm: Double,
+    val visibilityKm: Double,
+    val visibilityMiles: Double,
+    val humidity: Double,
+    val willItRain: Int,
+    val chanceOfRain: Int,
+    val willItSnow: Int,
+    val chanceOfSnow: Int,
+    val condition: Condition,
+    val uvIndex: Double,
+    val airQuality: AirQuality,
+)
+
+internal fun DayDto.toDomain() = Day(
+    maxTemperatureInCelsius = maxTemperatureInCelsius,
+    maxTemperatureInFahrenheit = maxTemperatureInFahrenheit,
+    minTemperatureInCelsius = minTemperatureInCelsius,
+    minTemperatureInFahrenheit = minTemperatureInFahrenheit,
+    averageTemperatureInCelsius = averageTemperatureInCelsius,
+    averageTemperatureInFahrenheit = averageTemperatureInFahrenheit,
+    maxWindSpeedMph = maxWindSpeedMph,
+    maxWindSpeedKph = maxWindSpeedKph,
+    totalPrecipitationMm = totalPrecipitationMm,
+    totalPrecipitationInches = totalPrecipitationInches,
+    totalSnowCm = totalSnowCm,
+    visibilityKm = visibilityKm,
+    visibilityMiles = visibilityMiles,
+    humidity = humidity,
+    willItRain = willItRain,
+    chanceOfRain = chanceOfRain,
+    willItSnow = willItSnow,
+    chanceOfSnow = chanceOfSnow,
+    condition = condition.toDomain(),
+    uvIndex = uvIndex,
+    airQuality = airQuality.toDomain(),
+)

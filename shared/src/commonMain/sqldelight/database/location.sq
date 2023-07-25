@@ -1,0 +1,27 @@
+CREATE TABLE locationEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    location TEXT NOT NULL,
+    createdAt INTEGER NOT NULL
+);
+
+getLocations:
+SELECT *
+FROM locationEntity
+ORDER BY createdAt DESC;
+
+insertLocationEntity:
+INSERT OR REPLACE
+INTO locationEntity(
+    id,
+    location,
+    createdAt
+) VALUES ( ?, ?, ?);
+
+deleteLocation:
+DELETE FROM locationEntity
+WHERE id = :id;
+
+getLocationByName:
+SELECT *
+FROM locationEntity
+WHERE location = :location;
