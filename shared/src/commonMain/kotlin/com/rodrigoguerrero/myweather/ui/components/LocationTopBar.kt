@@ -24,8 +24,7 @@ import dev.icerock.moko.resources.compose.stringResource
 @Composable
 fun LocationTopBar(
     query: String,
-    onUpdateQuery: (String) -> Unit,
-    onNewLocationSelected: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val navigator = LocalNavigator.currentOrThrow
     OutlinedTextField(
@@ -34,12 +33,12 @@ fun LocationTopBar(
         placeholder = {
             Text(text = stringResource(MR.strings.location_bar_placeholder))
         },
-        onValueChange = onUpdateQuery,
-        modifier = Modifier
+        onValueChange = {},
+        modifier = modifier
             .fillMaxWidth()
             .padding(top = 16.dp, end = 16.dp, start = 16.dp)
             .clickable {
-                navigator.push(NavSearchScreen(onNewLocationSelected = onNewLocationSelected))
+                navigator.push(NavSearchScreen)
             },
         enabled = false,
         leadingIcon = {

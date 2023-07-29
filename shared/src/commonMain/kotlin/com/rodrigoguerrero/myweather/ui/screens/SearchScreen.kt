@@ -48,7 +48,6 @@ import dev.icerock.moko.resources.compose.stringResource
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
-    onNewLocationSelected: (String) -> Unit,
 ) {
     val navigator = LocalNavigator.currentOrThrow
     val focusRequester = remember { FocusRequester() }
@@ -88,7 +87,6 @@ fun SearchScreen(
                 SearchSuggestion(
                     text = suggestion.toString(),
                     onSelected = {
-                        onNewLocationSelected(suggestion.toString())
                         viewModel.onEvent(SearchEvent.SuggestionSelected(suggestion))
                     },
                     withDivider = index < state.searchSuggestions.size - 1,
@@ -107,7 +105,6 @@ fun SearchScreen(
                 SearchSuggestion(
                     text = favoriteLocation.location,
                     onSelected = {
-                        onNewLocationSelected(favoriteLocation.location)
                         viewModel.onEvent(SearchEvent.OnFavoriteSelected(favoriteLocation))
                     },
                     showRemoveIcon = state.showRemoveFavoritesIcon,

@@ -5,4 +5,7 @@ sealed interface MainEvent {
     object LoadForecast : MainEvent
     object Loading : MainEvent
     object Error : MainEvent
+    data class ShowSaveLocationSnackbar(val location: String) : MainEvent
+    data class SaveLocation(val location: String): MainEvent
+    object ShowEmptyMessage : MainEvent
 }

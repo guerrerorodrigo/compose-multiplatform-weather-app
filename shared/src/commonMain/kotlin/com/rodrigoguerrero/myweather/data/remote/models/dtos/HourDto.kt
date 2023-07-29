@@ -38,5 +38,5 @@ data class HourDto(
     @SerialName("gust_mph") val windGustMph: Double,
     @SerialName("gust_kph") val windGustKph: Double,
     @SerialName("uv") val uvIndex: Double,
-    @SerialName("air_quality") val airQuality: AirQualityDto,
+    @SerialName("air_quality") val airQuality: AirQualityDto? = null,
 )

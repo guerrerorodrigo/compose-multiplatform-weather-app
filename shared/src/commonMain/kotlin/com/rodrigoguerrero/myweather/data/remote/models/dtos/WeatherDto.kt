@@ -28,5 +28,5 @@ data class WeatherDto(
     @SerialName("uv") val uvIndex: Double,
     @SerialName("gust_mph") val windGustMph: Double,
     @SerialName("gust_kph") val windGustKph: Double,
-    @SerialName("air_quality") val airQuality: AirQualityDto,
+    @SerialName("air_quality") val airQuality: AirQualityDto? = null,
 )

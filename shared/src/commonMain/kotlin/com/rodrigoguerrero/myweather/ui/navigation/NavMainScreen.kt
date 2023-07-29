@@ -6,17 +6,12 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import com.rodrigoguerrero.myweather.ui.screens.MainScreen
 
-data class NavMainScreen(
-    val onQueryUpdated: (String) -> Unit,
-    val isLocationPermissionDenied: Boolean?,
-) : Screen {
+object NavMainScreen: Screen {
 
     @Composable
     override fun Content() {
         MainScreen(
             modifier = Modifier.fillMaxSize(),
-            onQueryUpdated = onQueryUpdated,
-            isLocationPermissionDenied = isLocationPermissionDenied,
         )
     }
 }

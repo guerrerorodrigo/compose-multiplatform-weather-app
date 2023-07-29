@@ -1,8 +1,6 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
 import androidx.compose.runtime.Composable
-import com.rodrigoguerrero.myweather.domain.interactors.search.RetrieveFavoriteLocationByNameInteractor
-import com.rodrigoguerrero.myweather.domain.interactors.search.SaveFavoriteLocationInteractor
 import com.rodrigoguerrero.myweather.ui.models.events.AppEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.AppUiState
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -13,9 +11,6 @@ import dev.icerock.moko.permissions.PermissionState
 import dev.icerock.moko.permissions.PermissionsController
 import dev.icerock.moko.permissions.compose.BindEffect
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -24,10 +19,7 @@ import org.koin.core.component.get
 class AppViewModel : ViewModel(), KoinComponent {
 
     private val _state = MutableStateFlow(AppUiState())
-    val state: StateFlow<AppUiState> = _state.asStateFlow()
 
-    private val interactor: SaveFavoriteLocationInteractor = get()
-    private val favoriteLocationByIdInteractor: RetrieveFavoriteLocationByNameInteractor = get()
     private val permissionsController: PermissionsController = get()
 
     init {
@@ -50,19 +42,12 @@ class AppViewModel : ViewModel(), KoinComponent {
             }
 
             AppEvent.RequestLocationPermission -> requestPermission()
-            is AppEvent.SaveLocation -> saveLocation(appEvent.location)
         }
     }
 
     @Composable
     fun BindPermissionController() {
         BindEffect(permissionsController)
-    }
-
-    private fun saveLocation(location: String) {
-        viewModelScope.launch {
-            interactor(location)
-        }
     }
 
     private fun requestPermission() {
@@ -75,15 +60,6 @@ class AppViewModel : ViewModel(), KoinComponent {
             } catch (deniedException: DeniedException) {
                 onEvent(AppEvent.OnPermissionDenied)
             }
-        }
-    }
-
-    fun isLocationSaved(location: String) {
-        viewModelScope.launch {
-            favoriteLocationByIdInteractor(location)
-                .collectLatest { locations ->
-                    _state.update { it.copy(isLocationSaved = locations.isNotEmpty()) }
-                }
         }
     }
 }

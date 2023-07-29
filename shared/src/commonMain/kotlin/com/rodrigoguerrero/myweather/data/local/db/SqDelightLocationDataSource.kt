@@ -16,7 +16,7 @@ class SqDelightLocationDataSource(database: AppDatabase) : LocationDataSource {
 
     override fun getLocations(): Flow<List<LocationDto>> {
         return queries
-                .getLocations()
+            .getLocations()
             .asFlow()
             .mapToList()
             .map { entities ->
@@ -40,18 +40,10 @@ class SqDelightLocationDataSource(database: AppDatabase) : LocationDataSource {
         queries.deleteLocation(id)
     }
 
-    override suspend fun getLocationById(location: String): Flow<List<LocationDto>> {
+    override suspend fun getLocationById(location: String): List<LocationDto> {
         return queries
-            .getLocationByName(location)
-            .asFlow()
-            .mapToList()
-            .map { entities ->
-                supervisorScope {
-                    entities
-                        .map { entity -> async { entity.toLocationDto() } }
-                        .map { it.await() }
-                }
-            }
+            .getLocationByName(location).executeAsList()
+            .map { locationEntity -> locationEntity.toLocationDto() }
     }
 }
 

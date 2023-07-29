@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.update
 data class TodayWeatherUiState(
     val isLoading: Boolean = true,
     val isError: Boolean = false,
-    val showEmptyLocationMessage: Boolean = false,
     val currentTime: String = "",
     val currentTemperature: String = "",
     val feelsLikeTemperature: String = "",
@@ -79,16 +78,6 @@ internal fun MutableStateFlow<TodayWeatherUiState>.isError() {
 
 internal fun MutableStateFlow<TodayWeatherUiState>.updateQuery(query: String) {
     update { it.copy(query = query) }
-}
-
-internal fun MutableStateFlow<TodayWeatherUiState>.showEmptyLocationMessage() {
-    update {
-        TodayWeatherUiState(
-            isLoading = false,
-            isError = false,
-            showEmptyLocationMessage = true,
-        )
-    }
 }
 
 internal fun MutableStateFlow<TodayWeatherUiState>.setResponse(result: Forecast) {

@@ -15,7 +15,6 @@ import com.rodrigoguerrero.myweather.ui.components.CurrentDateItem
 import com.rodrigoguerrero.myweather.ui.components.CurrentDetailsItem
 import com.rodrigoguerrero.myweather.ui.components.CurrentWeatherItem
 import com.rodrigoguerrero.myweather.ui.components.DividerItem
-import com.rodrigoguerrero.myweather.ui.components.EmptyLocationMessage
 import com.rodrigoguerrero.myweather.ui.components.ErrorMessage
 import com.rodrigoguerrero.myweather.ui.components.HourlyRainItem
 import com.rodrigoguerrero.myweather.ui.components.HourlyWeatherItem
@@ -39,7 +38,6 @@ fun TodayWeatherScreen(
     mainUiState: MainUiState,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
-    isLocationPermissionDenied: Boolean?,
 ) {
     val viewModel = getViewModel(
         key = "today-weather-screen",
@@ -51,8 +49,6 @@ fun TodayWeatherScreen(
     LaunchedEffect(mainUiState.query) {
         val event = if (mainUiState.query.isNotEmpty()) {
             TodayWeatherEvent.UpdateQuery(query = mainUiState.query)
-        } else if (isLocationPermissionDenied == true) {
-            TodayWeatherEvent.ShowEmptyLocation
         } else {
             null
         }
@@ -65,14 +61,14 @@ fun TodayWeatherScreen(
         }
     }
 
-    LaunchedEffect(mainUiState.isError, isLocationPermissionDenied) {
-        if (mainUiState.isError && isLocationPermissionDenied != null) {
+    LaunchedEffect(mainUiState.isError) {
+        if (mainUiState.isError) {
             viewModel.onEvent(TodayWeatherEvent.ShowError)
         }
     }
 
-    LaunchedEffect(mainUiState.isLoading, isLocationPermissionDenied) {
-        if (mainUiState.isLoading && isLocationPermissionDenied != null) {
+    LaunchedEffect(mainUiState.isLoading) {
+        if (mainUiState.isLoading) {
             viewModel.onEvent(TodayWeatherEvent.ShowLoading)
         }
     }
@@ -80,7 +76,6 @@ fun TodayWeatherScreen(
     when {
         state.isLoading -> Loader(modifier)
         state.isError -> ErrorMessage(modifier, onRetry)
-        state.showEmptyLocationMessage -> EmptyLocationMessage(modifier)
         else -> CurrentWeatherScreenContent(
             todayWeatherUiState = state,
             modifier = modifier,

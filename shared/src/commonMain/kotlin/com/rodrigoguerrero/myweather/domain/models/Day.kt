@@ -23,7 +23,7 @@ data class Day(
     val chanceOfSnow: Int,
     val condition: Condition,
     val uvIndex: Double,
-    val airQuality: AirQuality,
+    val airQuality: AirQuality?,
 )
 
 internal fun DayDto.toDomain() = Day(
@@ -47,5 +47,5 @@ internal fun DayDto.toDomain() = Day(
     chanceOfSnow = chanceOfSnow,
     condition = condition.toDomain(),
     uvIndex = uvIndex,
-    airQuality = airQuality.toDomain(),
+    airQuality = airQuality?.toDomain(),
 )

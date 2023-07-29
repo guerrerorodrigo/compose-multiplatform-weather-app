@@ -25,5 +25,5 @@ data class DayDto(
     @SerialName("daily_chance_of_snow") val chanceOfSnow: Int,
     @SerialName("condition") val condition: ConditionDto,
     @SerialName("uv") val uvIndex: Double,
-    @SerialName("air_quality") val airQuality: AirQualityDto,
+    @SerialName("air_quality") val airQuality: AirQualityDto? = null,
 )

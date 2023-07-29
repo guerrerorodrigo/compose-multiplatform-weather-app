@@ -26,7 +26,7 @@ data class Weather(
     val uvIndex: Double,
     val windGustMph: Double,
     val windGustKph: Double,
-    val airQuality: AirQuality,
+    val airQuality: AirQuality?,
 )
 
 internal fun WeatherDto.toDomain() = Weather(
@@ -53,5 +53,5 @@ internal fun WeatherDto.toDomain() = Weather(
     uvIndex = uvIndex,
     windGustMph = windGustMph,
     windGustKph = windGustKph,
-    airQuality = airQuality.toDomain(),
+    airQuality = airQuality?.toDomain(),
 )

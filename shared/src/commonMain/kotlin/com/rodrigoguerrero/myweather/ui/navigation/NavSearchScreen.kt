@@ -6,15 +6,12 @@ import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.core.screen.Screen
 import com.rodrigoguerrero.myweather.ui.screens.SearchScreen
 
-data class NavSearchScreen(
-    val onNewLocationSelected: (String) -> Unit,
-) : Screen {
+object NavSearchScreen: Screen {
 
     @Composable
     override fun Content() {
         SearchScreen(
             modifier = Modifier.fillMaxSize(),
-            onNewLocationSelected = onNewLocationSelected,
         )
     }
 }

@@ -36,7 +36,7 @@ data class Hour(
     val windGustMph: Double,
     val windGustKph: Double,
     val uvIndex: Double,
-    val airQuality: AirQuality,
+    val airQuality: AirQuality?,
 )
 
 internal fun HourDto.toDomain() = Hour(
@@ -72,6 +72,6 @@ internal fun HourDto.toDomain() = Hour(
     windGustKph = windGustKph,
     windGustMph = windGustMph,
     uvIndex = uvIndex,
-    airQuality = airQuality.toDomain(),
+    airQuality = airQuality?.toDomain(),
     chanceOfRain = chanceOfRain,
 )

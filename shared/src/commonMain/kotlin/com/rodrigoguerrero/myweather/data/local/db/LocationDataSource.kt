@@ -6,5 +6,5 @@ interface LocationDataSource {
     fun getLocations(): Flow<List<LocationDto>>
     suspend fun insertLocation(location: LocationDto)
     suspend fun deleteLocation(id: Long)
-    suspend fun getLocationById(location: String): Flow<List<LocationDto>>
+    suspend fun getLocationById(location: String): List<LocationDto>
 }
