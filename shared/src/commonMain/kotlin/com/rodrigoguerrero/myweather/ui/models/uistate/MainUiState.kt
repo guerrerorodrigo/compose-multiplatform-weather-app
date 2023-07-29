@@ -32,6 +32,9 @@ internal fun MutableStateFlow<MainUiState>.updateForecast(forecast: Forecast) {
             isError = false,
             forecast = forecast,
             showEmptyMessage = false,
+            query = with (forecast.location) {
+                "$name, $region, $country"
+            }
         )
     }
 }

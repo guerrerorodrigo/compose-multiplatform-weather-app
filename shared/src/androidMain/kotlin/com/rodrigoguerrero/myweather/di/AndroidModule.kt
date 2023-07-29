@@ -2,6 +2,8 @@ package com.rodrigoguerrero.myweather.di
 
 import com.rodrigoguerrero.myweather.data.local.datastore.DataStoreProvider
 import com.rodrigoguerrero.myweather.data.local.DataStoreProviderImpl
+import com.rodrigoguerrero.myweather.domain.location.AndroidLocationService
+import com.rodrigoguerrero.myweather.domain.location.LocationService
 import com.rodrigoguerrero.mywheather.database.AppDatabase
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
@@ -21,4 +23,5 @@ val appModule = module {
         )
     }
     single { PermissionsController(applicationContext = androidContext())}
+    single<LocationService> { AndroidLocationService(context = androidContext()) }
 }

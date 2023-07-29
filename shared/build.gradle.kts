@@ -52,7 +52,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-resources:2.3.2")
                 implementation("io.ktor:ktor-client-content-negotiation:2.3.2")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
                 implementation("media.kamel:kamel-image:0.6.0")
 
                 implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-rc06")
@@ -86,6 +86,8 @@ kotlin {
 
                 implementation("io.ktor:ktor-client-android:2.3.2")
                 implementation("io.insert-koin:koin-android:3.4.0")
+
+                implementation("com.google.android.gms:play-services-location:21.0.1")
             }
         }
         val androidUnitTest by getting

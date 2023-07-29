@@ -7,7 +7,9 @@ import com.rodrigoguerrero.myweather.data.remote.models.WeatherAlerts
 import com.rodrigoguerrero.myweather.domain.interactors.search.RetrieveFavoriteLocationByNameInteractor
 import com.rodrigoguerrero.myweather.domain.interactors.search.SaveFavoriteLocationInteractor
 import com.rodrigoguerrero.myweather.domain.interactors.weather.ForecastInteractor
+import com.rodrigoguerrero.myweather.domain.location.LocationService
 import com.rodrigoguerrero.myweather.domain.models.ResourceResult
+import com.rodrigoguerrero.myweather.ui.models.PermissionsState
 import com.rodrigoguerrero.myweather.ui.models.events.MainEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.isError
@@ -25,6 +27,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -37,30 +40,34 @@ class MainViewModel : ViewModel(), KoinComponent {
     private val saveFavoriteLocationInteractor: SaveFavoriteLocationInteractor = get()
     private val favoriteLocationByIdInteractor: RetrieveFavoriteLocationByNameInteractor = get()
     private val permissionsController: PermissionsController = get()
+    private val locationService: LocationService = get()
 
+    private val permissions = MutableStateFlow(PermissionsState())
     private val _state = MutableStateFlow(MainUiState())
     val state: StateFlow<MainUiState> = _state.asStateFlow()
 
+    private val locationPermissionsFlow = preferencesRepository.location
+        .combine(permissions) { location, permissions ->
+            when {
+                location.isEmpty() && (permissions.isDenied == true || permissions.isPermanentlyDenied == true) -> {
+                    MainEvent.ShowEmptyMessage
+                }
+                location.isEmpty() && permissions.isGranted == true -> {
+                    MainEvent.LoadForecastWithLocation(location)
+                }
+                else -> MainEvent.UpdateQuery(query = location)
+            }
+        }
+
     init {
         viewModelScope.launch {
-            preferencesRepository.location
-                .collectLatest { location ->
-                    if (location.isEmpty()) {
-                        onEvent(MainEvent.ShowEmptyMessage)
-                    } else {
-                        onEvent(MainEvent.UpdateQuery(query = location))
-                        val favoriteLocation = favoriteLocationByIdInteractor(location)
-                        if (favoriteLocation.isEmpty()) {
-                            onEvent(MainEvent.ShowSaveLocationSnackbar(location))
-                        }
-                    }
-                }
+            locationPermissionsFlow.collectLatest { event -> onEvent(event) }
         }
 
         viewModelScope.launch {
             when (permissionsController.getPermissionState(Permission.LOCATION)) {
                 PermissionState.NotDetermined -> onEvent(MainEvent.RequestLocationPermission)
-                PermissionState.Granted -> onEvent(MainEvent.OnPermissionGranted)
+                PermissionState.Granted -> permissions.update { it.copy(isGranted = true) }
                 else -> {}
             }
         }
@@ -68,10 +75,11 @@ class MainViewModel : ViewModel(), KoinComponent {
 
     fun onEvent(event: MainEvent) {
         when (event) {
-            MainEvent.LoadForecast -> loadForecast()
+            MainEvent.LoadForecast -> loadForecast(_state.value.query)
             is MainEvent.UpdateQuery -> {
                 _state.updateQuery(event.query)
-                loadForecast()
+                shouldShowSnackbar(event.query)
+                loadForecast(_state.value.query)
             }
 
             MainEvent.Loading -> _state.isLoading()
@@ -84,13 +92,9 @@ class MainViewModel : ViewModel(), KoinComponent {
                     showEmptyMessage = true,
                 )
             }
-            MainEvent.OnPermissionGranted -> {
-
-            }
 
             MainEvent.RequestLocationPermission -> requestPermission()
-            MainEvent.OnPermissionDenied -> {}
-            MainEvent.OnPermissionPermanentlyDenied -> {}
+            is MainEvent.LoadForecastWithLocation -> loadForecastWithLocation()
         }
     }
 
@@ -99,15 +103,30 @@ class MainViewModel : ViewModel(), KoinComponent {
         BindEffect(permissionsController)
     }
 
+    private fun shouldShowSnackbar(location: String) {
+        viewModelScope.launch {
+            val favoriteLocation = favoriteLocationByIdInteractor(location)
+            if (favoriteLocation.isEmpty()) {
+                onEvent(MainEvent.ShowSaveLocationSnackbar(location))
+            }
+        }
+    }
+    private fun loadForecastWithLocation() {
+        viewModelScope.launch {
+            val location = locationService.getCurrentLocation()
+            loadForecast(location.toString())
+        }
+    }
+
     private fun requestPermission() {
         viewModelScope.launch {
             try {
                 permissionsController.providePermission(Permission.LOCATION)
-                onEvent(MainEvent.OnPermissionGranted)
+                permissions.update { it.copy(isGranted = true) }
             } catch (deniedAlwaysException: DeniedAlwaysException) {
-                onEvent(MainEvent.OnPermissionPermanentlyDenied)
+                permissions.update { it.copy(isPermanentlyDenied = true) }
             } catch (deniedException: DeniedException) {
-                onEvent(MainEvent.OnPermissionDenied)
+                permissions.update { it.copy(isDenied = true) }
             }
         }
     }
@@ -118,11 +137,11 @@ class MainViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    private fun loadForecast() {
-        if (_state.value.query.isNotEmpty()) {
+    private fun loadForecast(query: String) {
+        if (query.isNotEmpty()) {
             viewModelScope.launch {
                 forecastInteractor(
-                    query = _state.value.query,
+                    query = query,
                     airQuality = AirQuality.YES,
                     days = 3,
                     weatherAlerts = WeatherAlerts.YES,
