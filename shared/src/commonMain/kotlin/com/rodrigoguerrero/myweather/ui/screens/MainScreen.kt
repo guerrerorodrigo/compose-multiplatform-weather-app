@@ -67,6 +67,8 @@ fun MainScreen(
         }
     }
 
+    viewModel.BindPermissionController()
+
     Scaffold(
         modifier = modifier,
         snackbarHost = { SnackbarHost(snackbarHostState) },

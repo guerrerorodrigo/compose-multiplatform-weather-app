@@ -116,7 +116,7 @@ private fun CurrentWeatherScreenContent(
         }
         item {
             SectionTitleItem(
-                title = "Precipitation",
+                title = stringResource(MR.strings.precipitation),
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
         }

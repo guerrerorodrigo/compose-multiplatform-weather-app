@@ -8,4 +8,8 @@ sealed interface MainEvent {
     data class ShowSaveLocationSnackbar(val location: String) : MainEvent
     data class SaveLocation(val location: String): MainEvent
     object ShowEmptyMessage : MainEvent
+    object RequestLocationPermission : MainEvent
+    object OnPermissionGranted : MainEvent
+    object OnPermissionPermanentlyDenied : MainEvent
+    object OnPermissionDenied : MainEvent
 }

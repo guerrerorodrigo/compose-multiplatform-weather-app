@@ -1,5 +1,6 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
+import androidx.compose.runtime.Composable
 import com.rodrigoguerrero.myweather.data.local.datastore.PreferencesRepository
 import com.rodrigoguerrero.myweather.data.remote.models.AirQuality
 import com.rodrigoguerrero.myweather.data.remote.models.WeatherAlerts
@@ -14,6 +15,12 @@ import com.rodrigoguerrero.myweather.ui.models.uistate.isLoading
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateForecast
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateQuery
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import dev.icerock.moko.permissions.DeniedAlwaysException
+import dev.icerock.moko.permissions.DeniedException
+import dev.icerock.moko.permissions.Permission
+import dev.icerock.moko.permissions.PermissionState
+import dev.icerock.moko.permissions.PermissionsController
+import dev.icerock.moko.permissions.compose.BindEffect
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,6 +36,7 @@ class MainViewModel : ViewModel(), KoinComponent {
     private val forecastInteractor: ForecastInteractor = get()
     private val saveFavoriteLocationInteractor: SaveFavoriteLocationInteractor = get()
     private val favoriteLocationByIdInteractor: RetrieveFavoriteLocationByNameInteractor = get()
+    private val permissionsController: PermissionsController = get()
 
     private val _state = MutableStateFlow(MainUiState())
     val state: StateFlow<MainUiState> = _state.asStateFlow()
@@ -47,6 +55,14 @@ class MainViewModel : ViewModel(), KoinComponent {
                         }
                     }
                 }
+        }
+
+        viewModelScope.launch {
+            when (permissionsController.getPermissionState(Permission.LOCATION)) {
+                PermissionState.NotDetermined -> onEvent(MainEvent.RequestLocationPermission)
+                PermissionState.Granted -> onEvent(MainEvent.OnPermissionGranted)
+                else -> {}
+            }
         }
     }
 
@@ -67,6 +83,31 @@ class MainViewModel : ViewModel(), KoinComponent {
                     isLoading = false,
                     showEmptyMessage = true,
                 )
+            }
+            MainEvent.OnPermissionGranted -> {
+
+            }
+
+            MainEvent.RequestLocationPermission -> requestPermission()
+            MainEvent.OnPermissionDenied -> {}
+            MainEvent.OnPermissionPermanentlyDenied -> {}
+        }
+    }
+
+    @Composable
+    fun BindPermissionController() {
+        BindEffect(permissionsController)
+    }
+
+    private fun requestPermission() {
+        viewModelScope.launch {
+            try {
+                permissionsController.providePermission(Permission.LOCATION)
+                onEvent(MainEvent.OnPermissionGranted)
+            } catch (deniedAlwaysException: DeniedAlwaysException) {
+                onEvent(MainEvent.OnPermissionPermanentlyDenied)
+            } catch (deniedException: DeniedException) {
+                onEvent(MainEvent.OnPermissionDenied)
             }
         }
     }
