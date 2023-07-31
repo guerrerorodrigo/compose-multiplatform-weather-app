@@ -8,3 +8,4 @@ captures
 .cxx
 local.properties
 xcuserdata
+shared/src/commonMain/kotlin/com/rodrigoguerrero/myweather/data/remote/config/ApiKey.kt

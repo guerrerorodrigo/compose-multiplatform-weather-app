@@ -17,8 +17,6 @@ import io.ktor.serialization.JsonConvertException
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-private const val WEATHER_API_KEY = ""
-
 fun createHttpClient(httpClientEngine: HttpClientEngine) = HttpClient(httpClientEngine) {
     expectSuccess = true
     install(Resources)
