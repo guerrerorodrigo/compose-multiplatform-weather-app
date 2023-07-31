@@ -1,4 +1,12 @@
-You need to get an API key from [Weather Api](https://www.weatherapi.com/). Register there, get the API key, and add it to `WEATHER_API_KEY` constant in `HttpClientConfig.kt`
+You need to get an API key from [Weather Api](https://www.weatherapi.com/). Register there, get the API key, and follow the next steps:
+1. Create a `NetworkConstants` file in `com.rodrigoguerrero.myweather.data.remote.config` `package`.
+2. Add the following:
+```
+object NetworkConstants {
+    const val WEATHER_API_KEY = "YOUR_API_KEY"
+}
+```
+3. Replace `YOUR_API_KEY` with the actual value of the `weatherapi` API key.
 
 
 Libraries used:
