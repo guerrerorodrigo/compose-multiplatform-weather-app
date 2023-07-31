@@ -111,7 +111,10 @@ fun MainScreen(
                                 onRetry = { viewModel.onEvent(MainEvent.LoadForecast) },
                             )
 
-                            1 -> Text(text = "tomorrow")
+                            1 -> TomorrowWeatherScreen(
+                                mainUiState = state,
+                                onRetry = { viewModel.onEvent(MainEvent.LoadForecast) },
+                            )
                             2 -> FutureDaysWeatherScreen(
                                 mainUiState = state,
                                 onRetry = { viewModel.onEvent(MainEvent.LoadForecast) },

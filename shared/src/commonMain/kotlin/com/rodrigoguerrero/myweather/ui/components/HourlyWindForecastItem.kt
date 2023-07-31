@@ -8,22 +8,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
+import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
+import com.rodrigoguerrero.myweather.ui.models.uistate.getWindColor
 
 @Composable
 fun HourlyWindForecastItem(
-    modifier: Modifier,
-    todayWeatherUiState: TodayWeatherUiState
+    modifier: Modifier = Modifier,
+    hourlyForecasts: List<HourUi>
 ) {
     LazyRow(
         modifier = modifier.fillMaxWidth(),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        items(todayWeatherUiState.hourlyForecasts) { hour ->
+        items(hourlyForecasts) { hour ->
             HourlyWindForecast(
                 hourlyForecast = hour,
-                color = todayWeatherUiState.getColor(hour.windSpeed),
+                color = getWindColor(hour.windSpeed),
             )
         }
     }

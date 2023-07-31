@@ -14,13 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun PrecipitationChanceItem(
-    todayWeatherUiState: TodayWeatherUiState,
+    rainChance: String,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -34,7 +31,7 @@ fun PrecipitationChanceItem(
             modifier = Modifier.rotate(180f),
         )
         Text(
-            text = stringResource(MR.strings.today_rain_chance, todayWeatherUiState.rainChance),
+            text = rainChance,
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
         )

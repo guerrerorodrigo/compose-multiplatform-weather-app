@@ -29,6 +29,7 @@
     <string name="wind_speed_strong">Strong</string>
     <string name="wind_speed_super_strong">Super strong</string>
     <string name="today_rain_chance">%s%% chance of precipitation today</string>
+    <string name="tomorrow_rain_chance">%s%% chance of precipitation</string>
     <string name="humidity_percentage">%s%%</string>
     <string name="pressure_mbar">%s mBar</string>
     <string name="total_precipitation_mm">%s mm</string>
@@ -53,4 +54,8 @@
     <string name="saved_locations">Saved Locations</string>
     <string name="manage_locations">Manage</string>
     <string name="precipitation">Precipitation</string>
+    <string name="min_max_temperatures">Day %s°\u2191 · Night %s°\u2193</string>
+    <string name="chance_of_rain">Chance of rain</string>
+    <string name="sunrise_sunset_tomorrow_details">Sunrise/sunset</string>
+    <string name="max_wind_speed">Max: %s km/h</string>
 </resources>

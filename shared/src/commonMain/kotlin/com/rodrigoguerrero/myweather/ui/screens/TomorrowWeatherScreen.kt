@@ -12,81 +12,71 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.components.CurrentDateItem
-import com.rodrigoguerrero.myweather.ui.components.CurrentDetailsItem
-import com.rodrigoguerrero.myweather.ui.components.CurrentWeatherItem
 import com.rodrigoguerrero.myweather.ui.components.DividerItem
 import com.rodrigoguerrero.myweather.ui.components.ErrorMessage
 import com.rodrigoguerrero.myweather.ui.components.HourlyRainItem
 import com.rodrigoguerrero.myweather.ui.components.HourlyWeatherItem
 import com.rodrigoguerrero.myweather.ui.components.Loader
 import com.rodrigoguerrero.myweather.ui.components.PrecipitationChanceItem
-import com.rodrigoguerrero.myweather.ui.components.RiseAndSetItem
 import com.rodrigoguerrero.myweather.ui.components.SectionTitleItem
+import com.rodrigoguerrero.myweather.ui.components.TomorrowDetailsItem
+import com.rodrigoguerrero.myweather.ui.components.TomorrowWeatherItem
 import com.rodrigoguerrero.myweather.ui.components.TotalDailyRainVolume
 import com.rodrigoguerrero.myweather.ui.components.WindItem
-import com.rodrigoguerrero.myweather.ui.components.WindTodayItem
+import com.rodrigoguerrero.myweather.ui.components.WindTomorrowItem
+import com.rodrigoguerrero.myweather.ui.models.events.TomorrowWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
-import com.rodrigoguerrero.myweather.ui.models.events.TodayWeatherEvent
-import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
-import com.rodrigoguerrero.myweather.ui.viewmodels.TodayWeatherViewModel
+import com.rodrigoguerrero.myweather.ui.models.uistate.TomorrowWeatherUiState
+import com.rodrigoguerrero.myweather.ui.viewmodels.TomorrowWeatherViewModel
 import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
-fun TodayWeatherScreen(
+fun TomorrowWeatherScreen(
     mainUiState: MainUiState,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val viewModel = getViewModel(
-        key = "today-weather-screen",
-        factory = viewModelFactory { TodayWeatherViewModel() }
+        key = "tomorrow-weather-screen",
+        factory = viewModelFactory { TomorrowWeatherViewModel() }
     )
 
     val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(mainUiState.query) {
-        val event = if (mainUiState.query.isNotEmpty()) {
-            TodayWeatherEvent.UpdateQuery(query = mainUiState.query)
-        } else {
-            null
-        }
-        event?.let { viewModel.onEvent(event) }
-    }
-
     LaunchedEffect(mainUiState.forecast) {
         if (mainUiState.forecast != null) {
-            viewModel.onEvent(TodayWeatherEvent.UpdateForecast(mainUiState.forecast))
+            viewModel.onEvent(TomorrowWeatherEvent.UpdateForecast(mainUiState.forecast))
         }
     }
 
     LaunchedEffect(mainUiState.isError) {
         if (mainUiState.isError) {
-            viewModel.onEvent(TodayWeatherEvent.ShowError)
+            viewModel.onEvent(TomorrowWeatherEvent.ShowError)
         }
     }
 
     LaunchedEffect(mainUiState.isLoading) {
         if (mainUiState.isLoading) {
-            viewModel.onEvent(TodayWeatherEvent.ShowLoading)
+            viewModel.onEvent(TomorrowWeatherEvent.ShowLoading)
         }
     }
 
     when {
         state.isLoading -> Loader(modifier)
         state.isError -> ErrorMessage(modifier, onRetry)
-        else -> CurrentWeatherScreenContent(
-            todayWeatherUiState = state,
+        else -> TomorrowWeatherScreenContent(
+            tomorrowWeatherUiState = state,
             modifier = modifier,
         )
     }
 }
 
 @Composable
-private fun CurrentWeatherScreenContent(
-    todayWeatherUiState: TodayWeatherUiState,
+private fun TomorrowWeatherScreenContent(
+    tomorrowWeatherUiState: TomorrowWeatherUiState,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -95,19 +85,21 @@ private fun CurrentWeatherScreenContent(
         verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         item {
-            CurrentDateItem(currentTime = todayWeatherUiState.currentTime)
+            CurrentDateItem(currentTime = tomorrowWeatherUiState.date)
         }
         item {
-            CurrentWeatherItem(todayWeatherUiState)
+            TomorrowWeatherItem(
+                state = tomorrowWeatherUiState,
+            )
         }
         item {
-            HourlyWeatherItem(hourlyForecasts = todayWeatherUiState.hourlyForecasts)
+            HourlyWeatherItem(hourlyForecasts = tomorrowWeatherUiState.hourlyForecasts)
         }
         item {
             PrecipitationChanceItem(
                 rainChance = stringResource(
-                    MR.strings.today_rain_chance,
-                    todayWeatherUiState.rainChance,
+                    MR.strings.tomorrow_rain_chance,
+                    tomorrowWeatherUiState.rainChance,
                 )
             )
         }
@@ -115,7 +107,7 @@ private fun CurrentWeatherScreenContent(
             DividerItem()
         }
         item {
-            CurrentDetailsItem(todayWeatherUiState)
+            TomorrowDetailsItem(state = tomorrowWeatherUiState)
         }
         item {
             DividerItem()
@@ -128,14 +120,14 @@ private fun CurrentWeatherScreenContent(
         }
         item {
             HourlyRainItem(
-                hourlyForecasts = todayWeatherUiState.hourlyForecasts,
+                hourlyForecasts = tomorrowWeatherUiState.hourlyForecasts,
             )
         }
         item {
             TotalDailyRainVolume(
                 totalPrecipitation = stringResource(
                     MR.strings.total_precipitation_mm,
-                    todayWeatherUiState.totalPrecipitation,
+                    tomorrowWeatherUiState.totalDailyVolumeRain,
                 ),
             )
         }
@@ -144,34 +136,13 @@ private fun CurrentWeatherScreenContent(
         }
         item {
             WindItem(
-                hourlyForecasts = todayWeatherUiState.hourlyForecasts,
+                hourlyForecasts = tomorrowWeatherUiState.hourlyForecasts,
                 headerSection = {
-                    WindTodayItem(todayWeatherUiState)
+                    WindTomorrowItem(
+                        maxWindSpeed = tomorrowWeatherUiState.maxWindSpeed,
+                        windForce = tomorrowWeatherUiState.windForce,
+                    )
                 }
-            )
-        }
-        item {
-            DividerItem()
-        }
-        item {
-            RiseAndSetItem(
-                setTime = todayWeatherUiState.sunset,
-                riseTime = todayWeatherUiState.sunrise,
-                riseTitle = stringResource(MR.strings.sunrise),
-                setTitle = stringResource(MR.strings.sunset),
-                sectionTitle = stringResource(MR.strings.sunrise_sunset),
-            )
-        }
-        item {
-            DividerItem()
-        }
-        item {
-            RiseAndSetItem(
-                setTime = todayWeatherUiState.moonset,
-                riseTime = todayWeatherUiState.moonrise,
-                riseTitle = stringResource(MR.strings.moonrise),
-                setTitle = stringResource(MR.strings.moonset),
-                sectionTitle = stringResource(MR.strings.moonrise_moonset),
             )
         }
         item {

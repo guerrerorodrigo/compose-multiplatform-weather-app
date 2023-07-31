@@ -7,14 +7,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
+import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
 import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun WindItem(
-    modifier: Modifier,
-    todayWeatherUiState: TodayWeatherUiState
+    modifier: Modifier = Modifier,
+    headerSection: @Composable () -> Unit,
+    hourlyForecasts: List<HourUi>,
 ) {
     Column(
         modifier = modifier
@@ -23,7 +24,7 @@ fun WindItem(
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         SectionTitleItem(title = stringResource(MR.strings.wind))
-        WindTodayItem(todayWeatherUiState)
-        HourlyWindForecastItem(modifier, todayWeatherUiState)
+        headerSection()
+        HourlyWindForecastItem(hourlyForecasts = hourlyForecasts)
     }
 }

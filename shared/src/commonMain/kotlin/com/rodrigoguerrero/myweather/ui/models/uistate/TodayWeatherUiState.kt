@@ -42,7 +42,7 @@ data class TodayWeatherUiState(
 ) {
     val windSpeedColor: Color
         get() {
-            return getColor(windSpeed)
+            return getWindColor(windSpeed)
         }
 
     val windSpeedDescription: StringResource
@@ -54,15 +54,14 @@ data class TodayWeatherUiState(
                 else -> MR.strings.wind_speed_super_strong
             }
         }
-
-    fun getColor(speed: Int) = when (speed) {
-        in 0..20 -> Color.Cyan
-        in 21..40 -> Color.Green
-        in 41..60 -> Color.Yellow
-        else -> Color.Red
-    }
 }
 
+internal fun getWindColor(speed: Int) = when (speed) {
+    in 0..20 -> Color.Cyan
+    in 21..40 -> Color.Green
+    in 41..60 -> Color.Yellow
+    else -> Color.Red
+}
 internal fun MutableStateFlow<TodayWeatherUiState>.isLoading() {
     update { TodayWeatherUiState() }
 }
@@ -81,7 +80,7 @@ internal fun MutableStateFlow<TodayWeatherUiState>.updateQuery(query: String) {
 }
 
 internal fun MutableStateFlow<TodayWeatherUiState>.setResponse(result: Forecast) {
-    val allDaysHours = getAllDaysHours(
+    val allDaysHours = getTomorrowDayHours(
         forecastDays = result.forecastDays,
         currentTimeEpoch = result.location.localTimeEpoch,
         timeZoneId = result.location.timeZoneId,
@@ -122,19 +121,20 @@ internal fun MutableStateFlow<TodayWeatherUiState>.setResponse(result: Forecast)
     }
 }
 
-private fun getWindDirection(windDirection: String): StringResource = when (windDirection.lowercase()) {
-    "n" -> MR.strings.wind_direction_north
-    "nne", "ne", "ene" -> MR.strings.wind_direction_northeast
-    "e" -> MR.strings.wind_direction_east
-    "ese", "se", "sse" -> MR.strings.wind_direction_southeast
-    "s" -> MR.strings.wind_direction_south
-    "ssw", "sw", "wsw" -> MR.strings.wind_direction_southwest
-    "w" -> MR.strings.wind_direction_west
-    "wnw", "nw", "nnw" -> MR.strings.wind_direction_northwest
-    else -> throw IllegalArgumentException("Invalid wind direction")
-}
+private fun getWindDirection(windDirection: String): StringResource =
+    when (windDirection.lowercase()) {
+        "n" -> MR.strings.wind_direction_north
+        "nne", "ne", "ene" -> MR.strings.wind_direction_northeast
+        "e" -> MR.strings.wind_direction_east
+        "ese", "se", "sse" -> MR.strings.wind_direction_southeast
+        "s" -> MR.strings.wind_direction_south
+        "ssw", "sw", "wsw" -> MR.strings.wind_direction_southwest
+        "w" -> MR.strings.wind_direction_west
+        "wnw", "nw", "nnw" -> MR.strings.wind_direction_northwest
+        else -> throw IllegalArgumentException("Invalid wind direction")
+    }
 
-private fun getAllDaysHours(
+private fun getTomorrowDayHours(
     forecastDays: List<ForecastDay>,
     timeZoneId: String,
     currentTimeEpoch: Long,
