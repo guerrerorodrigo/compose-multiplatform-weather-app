@@ -1,5 +1,6 @@
 package com.rodrigoguerrero.myweather.data.remote.config
 
+import com.rodrigoguerrero.myweather.data.remote.config.NetworkConstants.WEATHER_API_KEY
 import com.rodrigoguerrero.myweather.data.remote.models.RemoteException
 import com.rodrigoguerrero.myweather.data.remote.models.RemoteExceptionType
 import io.ktor.client.HttpClient
