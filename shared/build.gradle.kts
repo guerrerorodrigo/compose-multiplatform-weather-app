@@ -18,7 +18,7 @@ kotlin {
 
     targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
         binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-            export("dev.icerock.moko:mvvm-core:0.16.1")
+            export(libs.dev.icerock.moko.mvvm.core.get())
         }
     }
 
@@ -30,7 +30,7 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
-            export("dev.icerock.moko:resources:0.23.0")
+            export(libs.dev.icerock.moko.resources)
         }
     }
 
@@ -44,33 +44,17 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
-                implementation("com.squareup.sqldelight:runtime:1.5.5")
-                implementation("com.squareup.sqldelight:coroutines-extensions:1.5.5")
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
-
-                implementation("io.ktor:ktor-client-core:2.3.2")
-                implementation("io.ktor:ktor-client-resources:2.3.2")
-                implementation("io.ktor:ktor-client-content-negotiation:2.3.2")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.2")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-                implementation("media.kamel:kamel-image:0.6.0")
-
-                implementation("cafe.adriel.voyager:voyager-navigator:1.0.0-rc06")
-                implementation("cafe.adriel.voyager:voyager-transitions:1.0.0-rc06")
-
-                implementation("androidx.datastore:datastore-core-okio:1.1.0-alpha04")
-                implementation("androidx.datastore:datastore-preferences-core:1.1.0-alpha04")
-
-                implementation("io.insert-koin:koin-core:3.4.0")
-
-                api("dev.icerock.moko:mvvm-core:0.16.1")
-                api("dev.icerock.moko:mvvm-compose:0.16.1")
-                api("dev.icerock.moko:mvvm-flow:0.16.1")
-                api("dev.icerock.moko:mvvm-flow-compose:0.16.1")
-                api("dev.icerock.moko:resources:0.23.0")
-                api("dev.icerock.moko:resources-compose:0.23.0")
-                api("dev.icerock.moko:permissions:0.16.0")
-                api("dev.icerock.moko:permissions-compose:0.16.0")
+                implementation(libs.bundles.sqldelight)
+                implementation(libs.org.jetbrains.kotlinx.datetime)
+                implementation(libs.bundles.ktor)
+                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
+                implementation(libs.media.kamel.image)
+                implementation(libs.bundles.voyager)
+                implementation(libs.bundles.datastore)
+                implementation(libs.io.insert.koin.core)
+                api(libs.bundles.moko.mvvm)
+                api(libs.bundles.moko.resources)
+                api(libs.bundles.moko.permissions)
             }
         }
         val commonTest by getting {
@@ -80,14 +64,12 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:1.5.5")
-                implementation("androidx.appcompat:appcompat:1.6.1")
-                implementation("androidx.activity:activity-compose:1.7.2")
-
-                implementation("io.ktor:ktor-client-android:2.3.2")
-                implementation("io.insert-koin:koin-android:3.4.0")
-
-                implementation("com.google.android.gms:play-services-location:21.0.1")
+                implementation(libs.com.squareup.sqldelight.android.driver)
+                implementation(libs.androidx.appcompat)
+                implementation(libs.androidx.activity.compose)
+                implementation(libs.io.ktor.client.android)
+                implementation(libs.io.insert.koin.android)
+                implementation(libs.com.google.android.gms.play.services.location)
             }
         }
         val androidUnitTest by getting
@@ -96,8 +78,8 @@ kotlin {
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:1.5.5")
-                implementation("io.ktor:ktor-client-darwin:2.3.2")
+                implementation(libs.com.squareup.sqldelight.native.driver)
+                implementation(libs.io.ktor.client.darwin)
             }
             dependsOn(commonMain)
             iosX64Main.dependsOn(this)
@@ -136,7 +118,7 @@ sqldelight {
 }
 
 dependencies {
-    implementation("androidx.core:core:1.10.1")
+    implementation(libs.androidx.core)
 }
 
 multiplatformResources {
