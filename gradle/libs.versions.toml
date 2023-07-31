@@ -2,6 +2,7 @@
 agp-version = "8.1.0"
 androidx-appcompat-version = "1.6.1"
 androidx-activity-compose-version = "1.7.2"
+androidx-compose-animation-version = "1.4.3"
 androidx-compose-ui-version = "1.4.3"
 androidx-core-version = "1.10.1"
 androidx-datastore-version = "1.1.0-alpha04"
@@ -23,6 +24,7 @@ voyager-version = "1.0.0-rc06"
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose-version" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat-version" }
+androidx-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "androidx-compose-animation-version" }
 androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose-ui-version" }
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core-version" }
 androidx-datastore-core-okio = { module = "androidx.datastore:datastore-core-okio", version.ref = "androidx-datastore-version" }

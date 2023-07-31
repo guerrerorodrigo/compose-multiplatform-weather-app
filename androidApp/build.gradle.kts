@@ -44,5 +44,6 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.activity.compose)
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
+    implementation(libs.androidx.compose.animation)
     implementation(libs.io.insert.koin.android)
 }
