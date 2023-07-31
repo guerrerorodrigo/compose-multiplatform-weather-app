@@ -1,16 +1,16 @@
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.com.android.application.plugin)
     kotlin("android")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.org.jetbrains.compose.plugin)
 }
 
 android {
     namespace = "com.rodrigoguerrero.myweather.android"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.rodrigoguerrero.myweather"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -41,13 +41,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    implementation("androidx.compose.ui:ui:1.4.0")
-    implementation("androidx.compose.ui:ui-tooling:1.4.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.4.0")
-    implementation("androidx.compose.foundation:foundation:1.4.0")
-    implementation("androidx.compose.material:material:1.4.0")
-    implementation("androidx.activity:activity-compose:1.7.0")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.2")
-    implementation("io.insert-koin:koin-android:3.4.0")
+    implementation(libs.org.jetbrains.kotlinx.coroutines.android)
+    implementation(libs.io.insert.koin.android)
 }

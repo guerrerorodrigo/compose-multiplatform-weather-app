@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.org.jetbrains.kotlin.multiplatform.plugin)
+    alias(libs.plugins.com.android.library.plugin)
+    alias(libs.plugins.org.jetbrains.compose.plugin)
+    alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin)
     id("com.squareup.sqldelight")
     id("dev.icerock.mobile.multiplatform-resources")
-    kotlin("plugin.serialization") version "1.8.20"
 }
 
 kotlin {
