@@ -1,3 +1,5 @@
+Weather app using Kotlin Multiplatform and Compose Multiplatform.
+
 ## Setup
 1. Go to the [Weather Api](https://www.weatherapi.com/). 
 2. Register and get an API key.
