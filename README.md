@@ -3,6 +3,13 @@
 2. Register and get an API key.
 3. In `local.properties`, add the API key as `apiKey=YOUR_API_KEY`.
 
+## Video
+### Android
+[Screen_recording_20230801_123215.webm](https://github.com/guerrerorodrigo/compose-multiplatform-weather-app/assets/77965057/16ea7959-42f0-4903-ae2c-710ebd2793dd)
+
+### iOS
+[Simulator Screen Recording - device-IPhone13Pro - 2023-08-01 at 12.43.40.webm](https://github.com/guerrerorodrigo/compose-multiplatform-weather-app/assets/77965057/2fa41b2a-addc-4a3a-b755-a640447ec44a)
+
 ## Libraries
 - [Kamel](https://github.com/Kamel-Media/Kamel) - Used to load remote images.
 - [Voyager](https://github.com/adrielcafe/voyager) - Used for compose navigation.
