@@ -6,6 +6,7 @@ androidx-compose-animation-version = "1.4.3"
 androidx-compose-ui-version = "1.4.3"
 androidx-core-version = "1.10.1"
 androidx-datastore-version = "1.1.0-alpha04"
+com-codingfeline-buildkonfig-gradle-plugin-version = "0.13.3"
 com-google-android-gms-play-services-location-version = "21.0.1"
 compose-version = "1.4.3"
 dev-icerock-moko-mvvm-version = "0.16.1"
@@ -31,7 +32,13 @@ androidx-datastore-core-okio = { module = "androidx.datastore:datastore-core-oki
 androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-version" }
 cafe-adriel-voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager-version" }
 cafe-adriel-voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager-version" }
+com-codingfeline-buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "com-codingfeline-buildkonfig-gradle-plugin-version" }
 com-google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "com-google-android-gms-play-services-location-version" }
+com-squareup-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight-version" }
+com-squareup-sqldelight-coroutines-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight-version" }
+com-squareup-sqldelight-gradle-plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight-version" }
+com-squareup-sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight-version" }
+com-squareup-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight-version" }
 dev-icerock-moko-mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "dev-icerock-moko-mvvm-version" }
 dev-icerock-moko-mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "dev-icerock-moko-mvvm-version" }
 dev-icerock-moko-mvvm-flow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "dev-icerock-moko-mvvm-version" }
@@ -53,11 +60,6 @@ media-kamel-image = { module = "media.kamel:kamel-image", version.ref = "media-k
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "org-jetbrains-kotlinx-datetime-version" }
-com-squareup-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-coroutines-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-gradle-plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight-version" }
 
 [plugins]
 com-android-application-plugin = { id = "com.android.application", version.ref = "agp-version" }

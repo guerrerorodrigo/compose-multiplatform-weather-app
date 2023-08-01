@@ -1,6 +1,5 @@
 package com.rodrigoguerrero.myweather.data.remote.config
 
-import com.rodrigoguerrero.myweather.data.remote.config.NetworkConstants.WEATHER_API_KEY
 import com.rodrigoguerrero.myweather.data.remote.models.RemoteException
 import com.rodrigoguerrero.myweather.data.remote.models.RemoteExceptionType
 import io.ktor.client.HttpClient
@@ -17,6 +16,7 @@ import io.ktor.http.URLProtocol
 import io.ktor.serialization.JsonConvertException
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import com.rodrigoguerrero.myweather.BuildKonfig
 
 fun createHttpClient(httpClientEngine: HttpClientEngine) = HttpClient(httpClientEngine) {
     expectSuccess = true
@@ -31,7 +31,7 @@ fun createHttpClient(httpClientEngine: HttpClientEngine) = HttpClient(httpClient
         url {
             host = "api.weatherapi.com"
             protocol = URLProtocol.HTTPS
-            parameters.append("key", WEATHER_API_KEY)
+            parameters.append("key", BuildKonfig.API_KEY)
         }
     }
 }

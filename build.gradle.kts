@@ -2,6 +2,7 @@ buildscript {
     dependencies {
         classpath(libs.com.squareup.sqldelight.gradle.plugin)
         classpath(libs.dev.icerock.moko.resources.generator.plugin)
+        classpath(libs.com.codingfeline.buildkonfig.gradle.plugin)
     }
     repositories {
         gradlePluginPortal()

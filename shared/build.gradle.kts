@@ -1,8 +1,12 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform.plugin)
     alias(libs.plugins.com.android.library.plugin)
     alias(libs.plugins.org.jetbrains.compose.plugin)
     alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin)
+    id("com.codingfeline.buildkonfig")
     id("com.squareup.sqldelight")
     id("dev.icerock.mobile.multiplatform-resources")
 }
@@ -123,4 +127,16 @@ dependencies {
 
 multiplatformResources {
     multiplatformResourcesPackage = "com.rodrigoguerrero.mywheather" // required
+}
+
+buildkonfig {
+    packageName = "com.rodrigoguerrero.myweather"
+    val apiKey: String = gradleLocalProperties(rootDir).getProperty("apiKey")
+
+    require(apiKey.isNotEmpty()) {
+        "Register your api key from https://www.weatherapi.com/ and place it in local.properties as `apiKey`"
+    }
+    defaultConfigs {
+        buildConfigField(STRING, "API_KEY", apiKey)
+    }
 }
