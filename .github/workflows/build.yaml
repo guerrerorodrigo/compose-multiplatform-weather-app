@@ -1,0 +1,70 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_android:
+    name: Build android
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Write local.properties
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          echo apiKey=$API_KEY >> local.properties
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew :app:android:assemble
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: android
+          path: |
+            app/android/build/outputs/apk/debug/android-debug.apk
+
+  build_ios:
+    name: Build iOS
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Write local.properties
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          echo apiKey=$API_KEY >> local.properties
+
+      - name: Build iOS app
+        run: xcodebuild -workspace iosApp/iosApp.xcodeproj/project.xcworkspace -configuration Debug -scheme iosApp -sdk iphonesimulator
