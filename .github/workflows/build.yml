@@ -34,7 +34,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew :app:android:assemble
+        run: ./gradlew :androidApp:assemble
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
