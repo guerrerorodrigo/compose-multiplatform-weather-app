@@ -3,7 +3,7 @@
 2. Register and get an API key.
 3. In `local.properties`, add the API key as `apiKey=YOUR_API_KEY`.
 
-Libraries used:
+## Libraries
 - [Kamel](https://github.com/Kamel-Media/Kamel) - Used to load remote images.
 - [Voyager](https://github.com/adrielcafe/voyager) - Used for compose navigation.
 - [moko-resources](https://github.com/icerockdev/moko-resources) - Used to have string resources.
