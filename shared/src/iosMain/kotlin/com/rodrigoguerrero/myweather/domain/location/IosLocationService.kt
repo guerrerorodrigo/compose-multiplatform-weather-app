@@ -1,5 +1,6 @@
 package com.rodrigoguerrero.myweather.domain.location
 
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
 import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
@@ -8,16 +9,17 @@ import platform.CoreLocation.kCLDistanceFilterNone
 import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.Foundation.NSError
 import platform.darwin.NSObject
+import kotlin.concurrent.AtomicReference
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
-import kotlin.native.concurrent.AtomicReference
 
 internal class IosLocationService : LocationService {
 
     private val locationManager = CLLocationManager()
     private val latestLocation = AtomicReference<DeviceLocation?>(null)
 
+    @OptIn(ExperimentalForeignApi::class)
     private class LocationDelegate : NSObject(), CLLocationManagerDelegateProtocol {
         var onLocationUpdate: ((DeviceLocation?) -> Unit)? = null
 

@@ -18,6 +18,9 @@ kotlin {
                 jvmTarget = "17"
             }
         }
+        sourceSets {
+            getByName("androidMain").kotlin.srcDirs("build/generated/moko/androidMain/src")
+        }
     }
 
     targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {

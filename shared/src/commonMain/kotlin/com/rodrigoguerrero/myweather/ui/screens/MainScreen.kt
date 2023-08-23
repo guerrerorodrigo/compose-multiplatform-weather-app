@@ -44,7 +44,7 @@ fun MainScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val snackbarMessage = stringResource(MR.strings.add_location_to_list)
     val snackbarAction = stringResource(MR.strings.add)
-    val pagerState = rememberPagerState()
+    val pagerState = rememberPagerState { 3 }
     val coroutineScope = rememberCoroutineScope()
     val viewModel = getViewModel(
         key = "main-screen",
@@ -103,10 +103,7 @@ fun MainScreen(
                 if (state.showEmptyMessage) {
                     EmptyLocationMessage()
                 } else {
-                    HorizontalPager(
-                        pageCount = tabs.size,
-                        state = pagerState,
-                    ) { tabIndex ->
+                    HorizontalPager(state = pagerState) { tabIndex ->
                         when (tabIndex) {
                             0 -> TodayWeatherScreen(
                                 mainUiState = state,
