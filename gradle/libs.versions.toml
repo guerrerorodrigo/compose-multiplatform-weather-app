@@ -16,11 +16,11 @@ io-insert-koin-core-version = "3.4.3"
 kotlin-version = "1.8.22"
 ktor-version = "2.3.3"
 media-kamel-image-version = "0.7.0"
+moe-tlaster-precompose-version = "1.4.3"
 org-jetbrains-kotlin-multiplatform-version = "1.8.22"
 org-jetbrains-kotlinx-coroutines-core-version = "1.7.3"
 org-jetbrains-kotlinx-datetime-version = "0.4.0"
 sqldelight-version = "1.5.5"
-voyager-version = "1.0.0-rc06"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose-version" }
@@ -30,8 +30,6 @@ androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androi
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core-version" }
 androidx-datastore-core-okio = { module = "androidx.datastore:datastore-core-okio", version.ref = "androidx-datastore-version" }
 androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-version" }
-cafe-adriel-voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager-version" }
-cafe-adriel-voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager-version" }
 com-codingfeline-buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "com-codingfeline-buildkonfig-gradle-plugin-version" }
 com-google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "com-google-android-gms-play-services-location-version" }
 com-squareup-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight-version" }
@@ -57,6 +55,7 @@ io-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "
 io-ktor-client-resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor-version" }
 io-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
 media-kamel-image = { module = "media.kamel:kamel-image", version.ref = "media-kamel-image-version" }
+moe-tlaster-precompose = { module = "moe.tlaster:precompose", version.ref = "moe-tlaster-precompose-version" }
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "org-jetbrains-kotlinx-datetime-version" }
@@ -96,8 +95,4 @@ moko-resources = [
 sqldelight = [
     "com-squareup-sqldelight-runtime",
     "com-squareup-sqldelight-coroutines-extensions",
-]
-voyager = [
-    "cafe-adriel-voyager-navigator",
-    "cafe-adriel-voyager-transitions",
 ]

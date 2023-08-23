@@ -38,6 +38,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
+    onNavigateToSearch: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
@@ -75,6 +76,7 @@ fun MainScreen(
         topBar = {
             LocationTopBar(
                 query = state.query,
+                onNavigateToSearch = onNavigateToSearch,
             )
         },
     ) { padding ->

@@ -14,9 +14,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
-import com.rodrigoguerrero.myweather.ui.navigation.NavSearchScreen
 import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.resources.compose.stringResource
 
@@ -24,9 +21,9 @@ import dev.icerock.moko.resources.compose.stringResource
 @Composable
 fun LocationTopBar(
     query: String,
+    onNavigateToSearch: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val navigator = LocalNavigator.currentOrThrow
     OutlinedTextField(
         maxLines = 1,
         value = query,
@@ -37,9 +34,7 @@ fun LocationTopBar(
         modifier = modifier
             .fillMaxWidth()
             .padding(top = 16.dp, end = 16.dp, start = 16.dp)
-            .clickable {
-                navigator.push(NavSearchScreen)
-            },
+            .clickable { onNavigateToSearch() },
         enabled = false,
         leadingIcon = {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)

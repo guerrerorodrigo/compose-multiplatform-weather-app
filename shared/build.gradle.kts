@@ -45,6 +45,7 @@ kotlin {
                 implementation(compose.foundation)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
+                implementation(compose.animation)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
@@ -53,12 +54,13 @@ kotlin {
                 implementation(libs.bundles.ktor)
                 implementation(libs.org.jetbrains.kotlinx.coroutines.core)
                 implementation(libs.media.kamel.image)
-                implementation(libs.bundles.voyager)
                 implementation(libs.bundles.datastore)
                 implementation(libs.io.insert.koin.core)
                 api(libs.bundles.moko.mvvm)
                 api(libs.bundles.moko.resources)
                 api(libs.bundles.moko.permissions)
+
+                api(libs.moe.tlaster.precompose)
             }
         }
         val commonTest by getting {

@@ -1,12 +1,12 @@
 package com.rodrigoguerrero.myweather.android
 
 import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.fragment.app.FragmentActivity
 import com.rodrigoguerrero.myweather.App
+import moe.tlaster.precompose.lifecycle.PreComposeActivity
+import moe.tlaster.precompose.lifecycle.setContent
 
-class MainActivity : FragmentActivity() {
+class MainActivity : PreComposeActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

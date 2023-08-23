@@ -35,8 +35,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import cafe.adriel.voyager.navigator.LocalNavigator
-import cafe.adriel.voyager.navigator.currentOrThrow
 import com.rodrigoguerrero.myweather.ui.models.events.SearchEvent
 import com.rodrigoguerrero.myweather.ui.viewmodels.SearchViewModel
 import com.rodrigoguerrero.mywheather.MR
@@ -47,9 +45,9 @@ import dev.icerock.moko.resources.compose.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
+    onClose: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val navigator = LocalNavigator.currentOrThrow
     val focusRequester = remember { FocusRequester() }
     val viewModel = getViewModel(
         key = "search-screen",
@@ -63,7 +61,7 @@ fun SearchScreen(
 
     LaunchedEffect(state.isCompleted) {
         if (state.isCompleted) {
-            navigator.pop()
+            onClose()
         }
     }
 
@@ -74,7 +72,8 @@ fun SearchScreen(
                 query = state.query,
                 focusRequester = focusRequester,
                 onQueryUpdated = { viewModel.onEvent(SearchEvent.QueryUpdated(it)) },
-                onClear = { viewModel.onEvent(SearchEvent.ClearQuery) }
+                onClear = { viewModel.onEvent(SearchEvent.ClearQuery) },
+                onBack = onClose,
             )
         }
     ) { padding ->
@@ -208,9 +207,9 @@ private fun SearchField(
     query: String,
     onQueryUpdated: (String) -> Unit,
     onClear: () -> Unit,
+    onBack: () -> Unit,
     focusRequester: FocusRequester,
 ) {
-    val navigator = LocalNavigator.currentOrThrow
     Row(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -221,7 +220,7 @@ private fun SearchField(
                 .fillMaxWidth()
                 .focusRequester(focusRequester),
             leadingIcon = {
-                IconButton(onClick = { navigator.pop() }) {
+                IconButton(onClick = onBack) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = null,

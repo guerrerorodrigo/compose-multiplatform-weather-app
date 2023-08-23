@@ -1,10 +1,10 @@
 package com.rodrigoguerrero.myweather
 
-import androidx.compose.ui.window.ComposeUIViewController
+import moe.tlaster.precompose.PreComposeApplication
 import platform.UIKit.UIScreen
 import platform.UIKit.UIUserInterfaceStyle
 
-fun MainViewController() = ComposeUIViewController {
+fun MainViewController() = PreComposeApplication(title = "My Weather") {
     val isDarkTheme =
         UIScreen.mainScreen.traitCollection.userInterfaceStyle == UIUserInterfaceStyle.UIUserInterfaceStyleDark
     App(

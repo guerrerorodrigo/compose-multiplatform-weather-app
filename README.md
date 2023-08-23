@@ -14,7 +14,7 @@ Weather app using Kotlin Multiplatform and Compose Multiplatform.
 
 ## Libraries
 - [Kamel](https://github.com/Kamel-Media/Kamel) - Used to load remote images.
-- [Voyager](https://github.com/adrielcafe/voyager) - Used for compose navigation.
+- [PreCompose](https://github.com/Tlaster/PreCompose/) - Used for compose navigation.
 - [moko-resources](https://github.com/icerockdev/moko-resources) - Used to have string resources.
 - [moko-mvvm](https://github.com/icerockdev/moko-mvvm) - Used to provide ViewModel implementations.
 - [SqlDelight](https://github.com/cashapp/sqldelight) - Used for local database.
