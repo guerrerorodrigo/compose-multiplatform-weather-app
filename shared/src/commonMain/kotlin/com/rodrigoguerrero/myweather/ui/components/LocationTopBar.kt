@@ -5,19 +5,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.resources.compose.stringResource
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LocationTopBar(
     query: String,
@@ -39,7 +37,7 @@ fun LocationTopBar(
         leadingIcon = {
             Icon(imageVector = Icons.Default.Search, contentDescription = null)
         },
-        colors = TextFieldDefaults.outlinedTextFieldColors(
+        colors = OutlinedTextFieldDefaults.colors(
             disabledBorderColor = MaterialTheme.colorScheme.onSurface,
             errorBorderColor = MaterialTheme.colorScheme.onSurface,
             focusedBorderColor = MaterialTheme.colorScheme.onSurface,
