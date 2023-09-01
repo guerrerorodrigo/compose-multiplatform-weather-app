@@ -19,7 +19,7 @@ media-kamel-image-version = "0.7.2"
 moe-tlaster-precompose-version = "1.5.0"
 org-jetbrains-kotlin-multiplatform-version = "1.9.0"
 org-jetbrains-kotlinx-coroutines-core-version = "1.7.3"
-org-jetbrains-kotlinx-datetime-version = "0.4.0"
+org-jetbrains-kotlinx-datetime-version = "0.4.1"
 sqldelight-version = "1.5.5"
 
 [libraries]
