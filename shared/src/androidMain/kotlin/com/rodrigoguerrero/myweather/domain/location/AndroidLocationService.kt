@@ -19,6 +19,7 @@ internal class AndroidLocationService(
     override suspend fun getCurrentLocation(): DeviceLocation = suspendCoroutine { continuation ->
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location ->
+                if (location == null) return@addOnSuccessListener
                 continuation.resume(
                     DeviceLocation(
                         latitude = location.latitude,
