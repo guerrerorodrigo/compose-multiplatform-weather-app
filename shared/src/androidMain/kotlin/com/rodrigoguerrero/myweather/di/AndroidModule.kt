@@ -23,5 +23,5 @@ val appModule = module {
         )
     }
     single { PermissionsController(applicationContext = androidContext())}
-    single<LocationService> { AndroidLocationService(context = androidContext()) }
+    factory <LocationService> { AndroidLocationService(context = androidContext()) }
 }
