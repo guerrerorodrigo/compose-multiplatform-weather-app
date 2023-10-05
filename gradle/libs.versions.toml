@@ -1,7 +1,7 @@
 [versions]
 agp-version = "8.1.2"
 androidx-appcompat-version = "1.6.1"
-androidx-activity-compose-version = "1.7.2"
+androidx-activity-compose-version = "1.8.0"
 androidx-compose-animation-version = "1.5.3"
 androidx-compose-ui-version = "1.5.3"
 androidx-core-version = "1.12.0"
