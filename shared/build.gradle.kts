@@ -57,10 +57,11 @@ kotlin {
                 implementation(libs.media.kamel.image)
                 implementation(libs.bundles.datastore)
                 implementation(libs.io.insert.koin.core)
+                implementation(libs.androidx.navigation.compose)
+
                 api(libs.bundles.moko.mvvm)
                 api(libs.bundles.moko.permissions)
 
-                api(libs.moe.tlaster.precompose)
             }
         }
         val commonTest by getting {

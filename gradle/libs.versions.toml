@@ -15,7 +15,7 @@ io-insert-koin-core-version = "3.5.0"
 kotlin-version = "1.9.23"
 ktor-version = "2.3.8"
 media-kamel-image-version = "0.9.0"
-moe-tlaster-precompose-version = "1.5.8"
+navigation-compose = "2.7.0-alpha04"
 org-jetbrains-kotlin-multiplatform-version = "1.9.23"
 org-jetbrains-kotlinx-coroutines-core-version = "1.8.0"
 org-jetbrains-kotlinx-datetime-version = "0.5.0"
@@ -31,6 +31,7 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core-version" }
 androidx-datastore-core-okio = { module = "androidx.datastore:datastore-core-okio", version.ref = "androidx-datastore-version" }
 androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-version" }
+androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 com-codingfeline-buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "com-codingfeline-buildkonfig-gradle-plugin-version" }
 com-google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "com-google-android-gms-play-services-location-version" }
 com-squareup-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight-version" }
@@ -53,11 +54,11 @@ io-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "
 io-ktor-client-resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor-version" }
 io-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
 media-kamel-image = { module = "media.kamel:kamel-image", version.ref = "media-kamel-image-version" }
-moe-tlaster-precompose = { module = "moe.tlaster:precompose", version.ref = "moe-tlaster-precompose-version" }
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "org-jetbrains-kotlinx-datetime-version" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundation-android-version" }
+
 [plugins]
 com-android-application-plugin = { id = "com.android.application", version.ref = "agp-version" }
 com-android-library-plugin = { id = "com.android.library", version.ref = "agp-version" }

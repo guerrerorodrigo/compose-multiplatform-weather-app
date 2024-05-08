@@ -8,9 +8,7 @@ data class Astronomy(
     val moonriseTime: String,
     val moonsetTime: String,
     val moonPhase: String,
-    val moonIllumination: String,
-    val isMoonUp: Int,
-    val isSunUp: Int,
+    val moonIllumination: Int,
 )
 
 internal fun AstronomyDto.toDomain() = Astronomy(
@@ -20,6 +18,4 @@ internal fun AstronomyDto.toDomain() = Astronomy(
     moonsetTime = moonsetTime,
     moonPhase = moonPhase,
     moonIllumination = moonIllumination,
-    isMoonUp = isMoonUp,
-    isSunUp = isSunUp,
 )
