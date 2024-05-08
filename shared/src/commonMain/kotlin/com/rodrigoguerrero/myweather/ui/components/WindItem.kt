@@ -8,9 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.wind
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun WindItem(
     modifier: Modifier = Modifier,
@@ -23,7 +26,7 @@ fun WindItem(
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        SectionTitleItem(title = stringResource(MR.strings.wind))
+        SectionTitleItem(title = stringResource(Res.string.wind))
         headerSection()
         HourlyWindForecastItem(hourlyForecasts = hourlyForecasts)
     }

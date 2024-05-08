@@ -29,10 +29,20 @@ import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
 import com.rodrigoguerrero.myweather.ui.models.events.TodayWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
 import com.rodrigoguerrero.myweather.ui.viewmodels.TodayWeatherViewModel
-import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.moonrise
+import myweather.shared.generated.resources.moonrise_moonset
+import myweather.shared.generated.resources.moonset
+import myweather.shared.generated.resources.precipitation
+import myweather.shared.generated.resources.sunrise
+import myweather.shared.generated.resources.sunrise_sunset
+import myweather.shared.generated.resources.sunset
+import myweather.shared.generated.resources.today_rain_chance
+import myweather.shared.generated.resources.total_precipitation_mm
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TodayWeatherScreen(
@@ -84,6 +94,7 @@ fun TodayWeatherScreen(
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun CurrentWeatherScreenContent(
     todayWeatherUiState: TodayWeatherUiState,
@@ -106,7 +117,7 @@ private fun CurrentWeatherScreenContent(
         item {
             PrecipitationChanceItem(
                 rainChance = stringResource(
-                    MR.strings.today_rain_chance,
+                    Res.string.today_rain_chance,
                     todayWeatherUiState.rainChance,
                 )
             )
@@ -122,7 +133,7 @@ private fun CurrentWeatherScreenContent(
         }
         item {
             SectionTitleItem(
-                title = stringResource(MR.strings.precipitation),
+                title = stringResource(Res.string.precipitation),
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
         }
@@ -134,7 +145,7 @@ private fun CurrentWeatherScreenContent(
         item {
             TotalDailyRainVolume(
                 totalPrecipitation = stringResource(
-                    MR.strings.total_precipitation_mm,
+                    Res.string.total_precipitation_mm,
                     todayWeatherUiState.totalPrecipitation,
                 ),
             )
@@ -157,9 +168,9 @@ private fun CurrentWeatherScreenContent(
             RiseAndSetItem(
                 setTime = todayWeatherUiState.sunset,
                 riseTime = todayWeatherUiState.sunrise,
-                riseTitle = stringResource(MR.strings.sunrise),
-                setTitle = stringResource(MR.strings.sunset),
-                sectionTitle = stringResource(MR.strings.sunrise_sunset),
+                riseTitle = stringResource(Res.string.sunrise),
+                setTitle = stringResource(Res.string.sunset),
+                sectionTitle = stringResource(Res.string.sunrise_sunset),
             )
         }
         item {
@@ -169,9 +180,9 @@ private fun CurrentWeatherScreenContent(
             RiseAndSetItem(
                 setTime = todayWeatherUiState.moonset,
                 riseTime = todayWeatherUiState.moonrise,
-                riseTitle = stringResource(MR.strings.moonrise),
-                setTitle = stringResource(MR.strings.moonset),
-                sectionTitle = stringResource(MR.strings.moonrise_moonset),
+                riseTitle = stringResource(Res.string.moonrise),
+                setTitle = stringResource(Res.string.moonset),
+                sectionTitle = stringResource(Res.string.moonrise_moonset),
             )
         }
         item {

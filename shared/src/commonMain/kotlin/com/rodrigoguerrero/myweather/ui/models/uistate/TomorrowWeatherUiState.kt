@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalResourceApi::class)
+
 package com.rodrigoguerrero.myweather.ui.models.uistate
 
 import com.rodrigoguerrero.myweather.common.formatTimeWithDayName
@@ -8,10 +10,15 @@ import com.rodrigoguerrero.myweather.domain.models.ForecastDay
 import com.rodrigoguerrero.myweather.domain.models.Hour
 import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
 import com.rodrigoguerrero.myweather.ui.models.uimodels.toUi
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.wind_speed_light
+import myweather.shared.generated.resources.wind_speed_moderate
+import myweather.shared.generated.resources.wind_speed_strong
+import myweather.shared.generated.resources.wind_speed_super_strong
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.StringResource
 
 data class TomorrowWeatherUiState(
     val isLoading: Boolean = true,
@@ -81,10 +88,10 @@ internal fun MutableStateFlow<TomorrowWeatherUiState>.setResponse(result: Foreca
 }
 
 private fun getWindForce(windSpeed: Int) = when (windSpeed) {
-    in 0..20 -> MR.strings.wind_speed_light
-    in 21..40 -> MR.strings.wind_speed_moderate
-    in 41..60 -> MR.strings.wind_speed_strong
-    else -> MR.strings.wind_speed_super_strong
+    in 0..20 -> Res.string.wind_speed_light
+    in 21..40 -> Res.string.wind_speed_moderate
+    in 41..60 -> Res.string.wind_speed_strong
+    else -> Res.string.wind_speed_super_strong
 }
 
 private fun getTomorrowDayHours(

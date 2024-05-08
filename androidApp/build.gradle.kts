@@ -46,4 +46,5 @@ dependencies {
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.androidx.compose.animation)
     implementation(libs.io.insert.koin.android)
+    implementation(libs.androidx.foundation.android)
 }

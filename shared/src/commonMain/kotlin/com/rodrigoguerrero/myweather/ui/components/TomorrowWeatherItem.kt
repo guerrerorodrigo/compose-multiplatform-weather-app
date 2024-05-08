@@ -14,11 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.uistate.TomorrowWeatherUiState
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.chance_rain_percentage
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun TomorrowWeatherItem(
     state: TomorrowWeatherUiState,
@@ -50,7 +53,7 @@ fun TomorrowWeatherItem(
         ) {
             if (state.rainChance.toInt() > 0) {
                 Text(
-                    text = stringResource(MR.strings.chance_rain_percentage, state.rainChance),
+                    text = stringResource(Res.string.chance_rain_percentage, state.rainChance),
                     style = MaterialTheme.typography.labelMedium.copy(color = Color.Cyan),
                 )
             }

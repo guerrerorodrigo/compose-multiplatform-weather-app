@@ -11,9 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.error_message
+import myweather.shared.generated.resources.retry
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ErrorMessage(modifier: Modifier = Modifier, onRetry: () -> Unit) {
     Box(
@@ -25,9 +29,9 @@ fun ErrorMessage(modifier: Modifier = Modifier, onRetry: () -> Unit) {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.padding(horizontal = 16.dp),
         ) {
-            Text(text = stringResource(MR.strings.error_message))
+            Text(text = stringResource(Res.string.error_message))
             Button(onClick = onRetry) {
-                Text(text = stringResource(MR.strings.retry))
+                Text(text = stringResource(Res.string.retry))
             }
         }
     }

@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalResourceApi::class)
+
 package com.rodrigoguerrero.myweather.ui.models.uistate
 
 import androidx.compose.ui.graphics.Color
@@ -10,10 +12,23 @@ import com.rodrigoguerrero.myweather.domain.models.ForecastDay
 import com.rodrigoguerrero.myweather.domain.models.Hour
 import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
 import com.rodrigoguerrero.myweather.ui.models.uimodels.toUi
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.wind_direction_east
+import myweather.shared.generated.resources.wind_direction_north
+import myweather.shared.generated.resources.wind_direction_northeast
+import myweather.shared.generated.resources.wind_direction_northwest
+import myweather.shared.generated.resources.wind_direction_south
+import myweather.shared.generated.resources.wind_direction_southeast
+import myweather.shared.generated.resources.wind_direction_southwest
+import myweather.shared.generated.resources.wind_direction_west
+import myweather.shared.generated.resources.wind_speed_light
+import myweather.shared.generated.resources.wind_speed_moderate
+import myweather.shared.generated.resources.wind_speed_strong
+import myweather.shared.generated.resources.wind_speed_super_strong
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.StringResource
 
 data class TodayWeatherUiState(
     val isLoading: Boolean = true,
@@ -48,10 +63,10 @@ data class TodayWeatherUiState(
     val windSpeedDescription: StringResource
         get() {
             return when (windSpeed) {
-                in 0..20 -> MR.strings.wind_speed_light
-                in 21..40 -> MR.strings.wind_speed_moderate
-                in 41..60 -> MR.strings.wind_speed_strong
-                else -> MR.strings.wind_speed_super_strong
+                in 0..20 -> Res.string.wind_speed_light
+                in 21..40 -> Res.string.wind_speed_moderate
+                in 41..60 -> Res.string.wind_speed_strong
+                else -> Res.string.wind_speed_super_strong
             }
         }
 }
@@ -123,14 +138,14 @@ internal fun MutableStateFlow<TodayWeatherUiState>.setResponse(result: Forecast)
 
 private fun getWindDirection(windDirection: String): StringResource =
     when (windDirection.lowercase()) {
-        "n" -> MR.strings.wind_direction_north
-        "nne", "ne", "ene" -> MR.strings.wind_direction_northeast
-        "e" -> MR.strings.wind_direction_east
-        "ese", "se", "sse" -> MR.strings.wind_direction_southeast
-        "s" -> MR.strings.wind_direction_south
-        "ssw", "sw", "wsw" -> MR.strings.wind_direction_southwest
-        "w" -> MR.strings.wind_direction_west
-        "wnw", "nw", "nnw" -> MR.strings.wind_direction_northwest
+        "n" -> Res.string.wind_direction_north
+        "nne", "ne", "ene" -> Res.string.wind_direction_northeast
+        "e" -> Res.string.wind_direction_east
+        "ese", "se", "sse" -> Res.string.wind_direction_southeast
+        "s" -> Res.string.wind_direction_south
+        "ssw", "sw", "wsw" -> Res.string.wind_direction_southwest
+        "w" -> Res.string.wind_direction_west
+        "wnw", "nw", "nnw" -> Res.string.wind_direction_northwest
         else -> throw IllegalArgumentException("Invalid wind direction")
     }
 

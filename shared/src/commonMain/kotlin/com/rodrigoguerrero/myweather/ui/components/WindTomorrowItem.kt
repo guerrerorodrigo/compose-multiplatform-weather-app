@@ -8,10 +8,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.StringResource
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.max_wind_speed
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun WindTomorrowItem(
     windForce: StringResource?,
@@ -23,13 +26,13 @@ fun WindTomorrowItem(
             .fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        windForce?.let {
+        windForce?.let { forceRes ->
             Text(
-                text = stringResource(windForce),
+                text = stringResource(forceRes),
             )
         }
         Text(
-            text = stringResource(MR.strings.max_wind_speed, maxWindSpeed),
+            text = stringResource(Res.string.max_wind_speed, maxWindSpeed),
             style = MaterialTheme.typography.labelMedium,
         )
     }

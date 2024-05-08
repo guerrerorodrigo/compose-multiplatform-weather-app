@@ -11,9 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.celsius
+import myweather.shared.generated.resources.feels_like_temp
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun Temperature(
     currentTemperature: String,
@@ -34,11 +38,11 @@ fun Temperature(
                 fontSize = 72.sp,
             )
             Text(
-                text = stringResource(MR.strings.celsius),
+                text = stringResource(Res.string.celsius),
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.padding(top = 16.dp),
             )
         }
-        Text(text = stringResource(MR.strings.feels_like_temp, feelsLike))
+        Text(text = stringResource(Res.string.feels_like_temp, feelsLike))
     }
 }

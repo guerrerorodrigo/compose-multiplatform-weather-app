@@ -11,11 +11,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,12 +36,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.events.SearchEvent
 import com.rodrigoguerrero.myweather.ui.viewmodels.SearchViewModel
-import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.manage_locations
+import myweather.shared.generated.resources.saved_locations
+import myweather.shared.generated.resources.search_hint
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchScreen(
     onClose: () -> Unit,
@@ -116,7 +118,7 @@ fun SearchScreen(
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, ExperimentalResourceApi::class)
 @Composable
 private fun FavoriteLocationsHeader(
     modifier: Modifier = Modifier,
@@ -130,13 +132,13 @@ private fun FavoriteLocationsHeader(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = stringResource(MR.strings.saved_locations),
+            text = stringResource(Res.string.saved_locations),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
         )
         Spacer(modifier = Modifier.weight(1f))
         Text(
-            text = stringResource(MR.strings.manage_locations),
+            text = stringResource(Res.string.manage_locations),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
             modifier = Modifier
@@ -146,14 +148,13 @@ private fun FavoriteLocationsHeader(
                 }
         )
     }
-    Divider(
+    HorizontalDivider(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp),
     )
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun SearchSuggestion(
     text: String,
@@ -197,11 +198,11 @@ private fun SearchSuggestion(
         }
     }
     if (withDivider) {
-        Divider(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp))
+        HorizontalDivider(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp))
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun SearchField(
     query: String,
@@ -222,13 +223,13 @@ private fun SearchField(
             leadingIcon = {
                 IconButton(onClick = onBack) {
                     Icon(
-                        imageVector = Icons.Default.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
                         contentDescription = null,
                     )
                 }
             },
             placeholder = {
-                Text(text = stringResource(MR.strings.search_hint))
+                Text(text = stringResource(Res.string.search_hint))
             },
             trailingIcon = {
                 if (query.isNotEmpty()) {

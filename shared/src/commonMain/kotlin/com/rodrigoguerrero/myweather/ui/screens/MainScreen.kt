@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
@@ -29,21 +28,24 @@ import com.rodrigoguerrero.myweather.ui.components.LocationTopBar
 import com.rodrigoguerrero.myweather.ui.models.events.MainEvent
 import com.rodrigoguerrero.myweather.ui.models.uimodels.tabs
 import com.rodrigoguerrero.myweather.ui.viewmodels.MainViewModel
-import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.launch
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.add
+import myweather.shared.generated.resources.add_location_to_list
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalResourceApi::class)
 @Composable
 fun MainScreen(
     onNavigateToSearch: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
-    val snackbarMessage = stringResource(MR.strings.add_location_to_list)
-    val snackbarAction = stringResource(MR.strings.add)
+    val snackbarMessage = stringResource(Res.string.add_location_to_list)
+    val snackbarAction = stringResource(Res.string.add)
     val pagerState = rememberPagerState { 3 }
     val coroutineScope = rememberCoroutineScope()
     val viewModel = getViewModel(

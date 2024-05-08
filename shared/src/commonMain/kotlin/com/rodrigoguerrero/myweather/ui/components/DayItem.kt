@@ -14,11 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.uimodels.DayUi
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.temperature_degree_symbol
+import myweather.shared.generated.resources.today
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun DayItem(
     modifier: Modifier = Modifier,
@@ -35,7 +39,7 @@ fun DayItem(
             modifier = Modifier.weight(1f),
         ) {
             Text(
-                text = day.name ?: stringResource(MR.strings.today),
+                text = day.name ?: stringResource(Res.string.today),
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold,
             )
@@ -56,12 +60,12 @@ fun DayItem(
             horizontalAlignment = Alignment.End,
         ) {
             Text(
-                text = stringResource(MR.strings.temperature_degree_symbol, day.maxTemp),
+                text = stringResource(Res.string.temperature_degree_symbol, day.maxTemp),
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold,
             )
             Text(
-                stringResource(MR.strings.temperature_degree_symbol, day.minTemp),
+                stringResource(Res.string.temperature_degree_symbol, day.minTemp),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
             )
