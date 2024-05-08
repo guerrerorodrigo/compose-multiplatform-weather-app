@@ -10,7 +10,5 @@ data class AstronomyDto(
     @SerialName("moonrise") val moonriseTime: String,
     @SerialName("moonset") val moonsetTime: String,
     @SerialName("moon_phase") val moonPhase: String,
-    @SerialName("moon_illumination") val moonIllumination: String,
-    @SerialName("is_moon_up") val isMoonUp: Int,
-    @SerialName("is_sun_up") val isSunUp: Int,
+    @SerialName("moon_illumination") val moonIllumination: Int,
 )

@@ -3,28 +3,29 @@ package com.rodrigoguerrero.myweather.ui.navigation
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.rodrigoguerrero.myweather.ui.screens.MainScreen
 import com.rodrigoguerrero.myweather.ui.screens.SearchScreen
-import moe.tlaster.precompose.navigation.NavHost
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.rememberNavigator
 
 @Composable
-fun RootNavGraph(navigator: Navigator = rememberNavigator()) {
+fun RootNavGraph(navController: NavHostController = rememberNavController()) {
     NavHost(
-        navigator = navigator,
-        initialRoute = "/home",
+        navController = navController,
+        startDestination = "/home",
     ) {
-        scene("/home") {
+        composable("/home") {
             MainScreen(
                 modifier = Modifier.fillMaxSize(),
-                onNavigateToSearch = { navigator.navigate("/search") },
+                onNavigateToSearch = { navController.navigate("/search") },
             )
         }
-        scene("/search") {
+        composable("/search") {
             SearchScreen(
                 modifier = Modifier.fillMaxSize(),
-                onClose = { navigator.popBackStack() }
+                onClose = { navController.popBackStack() }
             )
         }
     }
