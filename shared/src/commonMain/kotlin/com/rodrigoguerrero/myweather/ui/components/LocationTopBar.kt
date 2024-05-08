@@ -13,9 +13,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.location_bar_placeholder
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun LocationTopBar(
     query: String,
@@ -26,7 +29,7 @@ fun LocationTopBar(
         maxLines = 1,
         value = query,
         placeholder = {
-            Text(text = stringResource(MR.strings.location_bar_placeholder))
+            Text(text = stringResource(Res.string.location_bar_placeholder))
         },
         onValueChange = {},
         modifier = modifier

@@ -28,10 +28,14 @@ import com.rodrigoguerrero.myweather.ui.models.events.TomorrowWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.TomorrowWeatherUiState
 import com.rodrigoguerrero.myweather.ui.viewmodels.TomorrowWeatherViewModel
-import com.rodrigoguerrero.mywheather.MR
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.precipitation
+import myweather.shared.generated.resources.tomorrow_rain_chance
+import myweather.shared.generated.resources.total_precipitation_mm
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TomorrowWeatherScreen(
@@ -74,6 +78,7 @@ fun TomorrowWeatherScreen(
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun TomorrowWeatherScreenContent(
     tomorrowWeatherUiState: TomorrowWeatherUiState,
@@ -98,7 +103,7 @@ private fun TomorrowWeatherScreenContent(
         item {
             PrecipitationChanceItem(
                 rainChance = stringResource(
-                    MR.strings.tomorrow_rain_chance,
+                    Res.string.tomorrow_rain_chance,
                     tomorrowWeatherUiState.rainChance,
                 )
             )
@@ -114,7 +119,7 @@ private fun TomorrowWeatherScreenContent(
         }
         item {
             SectionTitleItem(
-                title = stringResource(MR.strings.precipitation),
+                title = stringResource(Res.string.precipitation),
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
         }
@@ -126,7 +131,7 @@ private fun TomorrowWeatherScreenContent(
         item {
             TotalDailyRainVolume(
                 totalPrecipitation = stringResource(
-                    MR.strings.total_precipitation_mm,
+                    Res.string.total_precipitation_mm,
                     tomorrowWeatherUiState.totalDailyVolumeRain,
                 ),
             )

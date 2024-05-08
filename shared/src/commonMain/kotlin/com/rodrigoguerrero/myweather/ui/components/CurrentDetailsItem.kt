@@ -13,9 +13,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.current_details
+import myweather.shared.generated.resources.dew_point
+import myweather.shared.generated.resources.humidity
+import myweather.shared.generated.resources.humidity_percentage
+import myweather.shared.generated.resources.pressure
+import myweather.shared.generated.resources.pressure_mbar
+import myweather.shared.generated.resources.temperature_celsius
+import myweather.shared.generated.resources.uv_index
+import myweather.shared.generated.resources.visibility
+import myweather.shared.generated.resources.visibility_km
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun CurrentDetailsItem(
     todayWeatherUiState: TodayWeatherUiState,
@@ -28,7 +40,7 @@ fun CurrentDetailsItem(
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         SectionTitleItem(
-            title = stringResource(MR.strings.current_details),
+            title = stringResource(Res.string.current_details),
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -39,6 +51,7 @@ fun CurrentDetailsItem(
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun RowScope.DetailsValues(todayWeatherUiState: TodayWeatherUiState) {
     Column(
@@ -46,17 +59,17 @@ private fun RowScope.DetailsValues(todayWeatherUiState: TodayWeatherUiState) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = stringResource(MR.strings.humidity_percentage, todayWeatherUiState.humidity),
+            text = stringResource(Res.string.humidity_percentage, todayWeatherUiState.humidity),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
         )
         Text(
-            text = stringResource(MR.strings.temperature_celsius, todayWeatherUiState.dewPoint),
+            text = stringResource(Res.string.temperature_celsius, todayWeatherUiState.dewPoint),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
         )
         Text(
-            text = stringResource(MR.strings.pressure_mbar, todayWeatherUiState.pressure),
+            text = stringResource(Res.string.pressure_mbar, todayWeatherUiState.pressure),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
         )
@@ -66,13 +79,14 @@ private fun RowScope.DetailsValues(todayWeatherUiState: TodayWeatherUiState) {
             fontWeight = FontWeight.Bold,
         )
         Text(
-            text = stringResource(MR.strings.visibility_km, todayWeatherUiState.visibility),
+            text = stringResource(Res.string.visibility_km, todayWeatherUiState.visibility),
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
         )
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun RowScope.DetailsHeaders() {
     Column(
@@ -80,27 +94,27 @@ private fun RowScope.DetailsHeaders() {
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = stringResource(MR.strings.humidity),
+            text = stringResource(Res.string.humidity),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
         )
         Text(
-            text = stringResource(MR.strings.dew_point),
+            text = stringResource(Res.string.dew_point),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
         )
         Text(
-            text = stringResource(MR.strings.pressure),
+            text = stringResource(Res.string.pressure),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
         )
         Text(
-            text = stringResource(MR.strings.uv_index),
+            text = stringResource(Res.string.uv_index),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
         )
         Text(
-            text = stringResource(MR.strings.visibility),
+            text = stringResource(Res.string.visibility),
             style = MaterialTheme.typography.labelLarge,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.8f),
         )

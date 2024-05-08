@@ -18,8 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.rain_chance
+import myweather.shared.generated.resources.rain_total_daily_volume
+import myweather.shared.generated.resources.rain_volume
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun SectionTitleItem(
@@ -34,6 +38,7 @@ fun SectionTitleItem(
     )
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun HourlyRainItem(
     hourlyForecasts: List<HourUi>,
@@ -51,12 +56,12 @@ fun HourlyRainItem(
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Text(
-                    text = stringResource(MR.strings.rain_chance),
+                    text = stringResource(Res.string.rain_chance),
                     style = MaterialTheme.typography.labelMedium,
                 )
                 Spacer(modifier = Modifier.height(32.dp))
                 Text(
-                    text = stringResource(MR.strings.rain_volume),
+                    text = stringResource(Res.string.rain_volume),
                     style = MaterialTheme.typography.labelMedium,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -68,6 +73,7 @@ fun HourlyRainItem(
     }
 }
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun TotalDailyRainVolume(
     totalPrecipitation: String,
@@ -79,7 +85,7 @@ fun TotalDailyRainVolume(
         modifier = modifier.padding(horizontal = 16.dp),
     ) {
         Text(
-            text = stringResource(MR.strings.rain_total_daily_volume),
+            text = stringResource(Res.string.rain_total_daily_volume),
             style = MaterialTheme.typography.labelMedium,
         )
         Text(

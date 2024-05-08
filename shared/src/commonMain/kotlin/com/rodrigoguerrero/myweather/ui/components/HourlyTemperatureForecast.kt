@@ -10,11 +10,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.temperature_degree_symbol
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun HourlyForecast(
     hourlyForecast: HourUi,
@@ -26,7 +29,7 @@ fun HourlyForecast(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = stringResource(MR.strings.temperature_degree_symbol, hourlyForecast.temperature),
+            text = stringResource(Res.string.temperature_degree_symbol, hourlyForecast.temperature),
             style = MaterialTheme.typography.labelMedium,
         )
         KamelImage(

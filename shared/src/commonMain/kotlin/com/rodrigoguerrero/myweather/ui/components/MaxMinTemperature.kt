@@ -6,9 +6,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.min_max_temperatures
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun MaxMinTemperature(
     maxTemp: String,
@@ -20,7 +23,7 @@ fun MaxMinTemperature(
         modifier = modifier
     ) {
         Text(
-            text = stringResource(MR.strings.min_max_temperatures, maxTemp, minTemp),
+            text = stringResource(Res.string.min_max_temperatures, maxTemp, minTemp),
             modifier = Modifier.fillMaxWidth(),
             style = style,
         )

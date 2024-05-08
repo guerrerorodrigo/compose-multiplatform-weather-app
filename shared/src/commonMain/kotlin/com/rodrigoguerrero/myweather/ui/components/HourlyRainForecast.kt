@@ -14,9 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
-import com.rodrigoguerrero.mywheather.MR
-import dev.icerock.moko.resources.compose.stringResource
+import myweather.shared.generated.resources.Res
+import myweather.shared.generated.resources.chance_rain_percentage
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun HourlyRainForecast(
     hourlyForecast: HourUi,
@@ -28,7 +31,7 @@ fun HourlyRainForecast(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = stringResource(MR.strings.chance_rain_percentage, hourlyForecast.chanceOfRain),
+            text = stringResource(Res.string.chance_rain_percentage, hourlyForecast.chanceOfRain),
             style = MaterialTheme.typography.labelMedium,
         )
         Box(

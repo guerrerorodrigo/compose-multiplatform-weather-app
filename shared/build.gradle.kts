@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin)
     id("com.codingfeline.buildkonfig")
     id("com.squareup.sqldelight")
-    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -37,7 +36,6 @@ kotlin {
         it.binaries.framework {
             baseName = "shared"
             isStatic = true
-            export(libs.dev.icerock.moko.resources)
         }
     }
 
@@ -60,7 +58,6 @@ kotlin {
                 implementation(libs.bundles.datastore)
                 implementation(libs.io.insert.koin.core)
                 api(libs.bundles.moko.mvvm)
-                api(libs.bundles.moko.resources)
                 api(libs.bundles.moko.permissions)
 
                 api(libs.moe.tlaster.precompose)
@@ -109,13 +106,21 @@ kotlin {
 
 android {
     namespace = "com.rodrigoguerrero.myweather.android"
-    compileSdk = 33
+    compileSdk = 34
+
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    sourceSets["main"].res.srcDirs("src/androidMain/res")
+    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
+
     defaultConfig {
         minSdk = 24
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    dependencies {
+        debugImplementation(libs.androidx.compose.ui.tooling)
     }
 }
 
@@ -128,10 +133,6 @@ sqldelight {
 
 dependencies {
     implementation(libs.androidx.core)
-}
-
-multiplatformResources {
-    multiplatformResourcesPackage = "com.rodrigoguerrero.mywheather" // required
 }
 
 buildkonfig {
