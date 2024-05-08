@@ -14,13 +14,13 @@
     <string name="rain_total_daily_volume">Total daily volume</string>
     <string name="location_bar_placeholder">Click here to add a location</string>
     <string name="celsius">°C</string>
-    <string name="feels_like_temp">Feels like %s°</string>
+    <string name="feels_like_temp">Feels like %1$s°</string>
     <string name="wind">Wind</string>
     <string name="km_h">km/h</string>
     <string name="today">Today</string>
-    <string name="temperature_degree_symbol">%s°</string>
-    <string name="temperature_celsius">%s°</string>
-    <string name="chance_rain_percentage">%s%%</string>
+    <string name="temperature_degree_symbol">%1$s°</string>
+    <string name="temperature_celsius">%1$s°</string>
+    <string name="chance_rain_percentage">%1$s%</string>
     <string name="tab_name_today">Today</string>
     <string name="tab_name_tomorrow">Tomorrow</string>
     <string name="tab_name_three_days">3 days</string>
@@ -28,12 +28,12 @@
     <string name="wind_speed_moderate">Moderate</string>
     <string name="wind_speed_strong">Strong</string>
     <string name="wind_speed_super_strong">Super strong</string>
-    <string name="today_rain_chance">%s%% chance of precipitation today</string>
-    <string name="tomorrow_rain_chance">%s%% chance of precipitation</string>
-    <string name="humidity_percentage">%s%%</string>
-    <string name="pressure_mbar">%s mBar</string>
-    <string name="total_precipitation_mm">%s mm</string>
-    <string name="visibility_km">%s km</string>
+    <string name="today_rain_chance">%1$s% chance of precipitation today</string>
+    <string name="tomorrow_rain_chance">%1$s% chance of precipitation</string>
+    <string name="humidity_percentage">%1$s%</string>
+    <string name="pressure_mbar">%1$s mBar</string>
+    <string name="total_precipitation_mm">%1$s mm</string>
+    <string name="visibility_km">%1$s km</string>
     <string name="wind_direction_north">Now · From north</string>
     <string name="wind_direction_northeast">Now · From northeast</string>
     <string name="wind_direction_east">Now · From east</string>
@@ -54,8 +54,8 @@
     <string name="saved_locations">Saved Locations</string>
     <string name="manage_locations">Manage</string>
     <string name="precipitation">Precipitation</string>
-    <string name="min_max_temperatures">Day %s°\u2191 · Night %s°\u2193</string>
+    <string name="min_max_temperatures">Day %1$°\u2191 · Night %1$°\u2193</string>
     <string name="chance_of_rain">Chance of rain</string>
     <string name="sunrise_sunset_tomorrow_details">Sunrise/sunset</string>
-    <string name="max_wind_speed">Max: %s km/h</string>
+    <string name="max_wind_speed">Max: %1$s km/h</string>
 </resources>
