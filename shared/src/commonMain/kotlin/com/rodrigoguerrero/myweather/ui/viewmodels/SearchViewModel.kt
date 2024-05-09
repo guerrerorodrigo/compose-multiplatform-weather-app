@@ -7,11 +7,13 @@ import com.rodrigoguerrero.myweather.domain.interactors.search.DeleteFavoriteLoc
 import com.rodrigoguerrero.myweather.domain.interactors.search.RetrieveFavoriteLocationsInteractor
 import com.rodrigoguerrero.myweather.domain.interactors.search.SearchInteractor
 import com.rodrigoguerrero.myweather.domain.models.ResourceResult
-import com.rodrigoguerrero.myweather.ui.models.uimodels.FavoriteLocation
 import com.rodrigoguerrero.myweather.ui.models.events.SearchEvent
+import com.rodrigoguerrero.myweather.ui.models.uimodels.FavoriteLocation
 import com.rodrigoguerrero.myweather.ui.models.uistate.SearchUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.toUi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -119,7 +121,7 @@ class SearchViewModel : ViewModel(), KoinComponent {
     }
 
     private fun deleteLocation(favoriteLocation: FavoriteLocation) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             deleteFavoriteLocationInteractor(favoriteLocation)
         }
     }

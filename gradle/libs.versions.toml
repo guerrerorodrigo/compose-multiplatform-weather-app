@@ -7,6 +7,7 @@ androidx-compose-ui-version = "1.6.7"
 androidx-core-version = "1.13.1"
 androidx-datastore-version = "1.1.1"
 androidx-lifecycle = "2.8.0-rc01"
+androidx-room = "2.7.0-alpha01"
 com-codingfeline-buildkonfig-gradle-plugin-version = "0.15.1"
 com-google-android-gms-play-services-location-version = "21.2.0"
 compose-plugin-version = "1.6.2"
@@ -14,14 +15,15 @@ dev-icerock-moko-permissions-version = "0.17.0"
 io-insert-koin-core-version = "3.5.0"
 io-insert-koin-compose = "1.2.0-alpha3"
 kotlin-version = "1.9.23"
+ksp = "1.9.23-1.0.19"
 ktor-version = "2.3.8"
 media-kamel-image-version = "0.9.0"
 navigation-compose = "2.7.0-alpha04"
 org-jetbrains-kotlin-multiplatform-version = "1.9.23"
 org-jetbrains-kotlinx-coroutines-core-version = "1.8.0"
 org-jetbrains-kotlinx-datetime-version = "0.5.0"
-sqldelight-version = "1.5.5"
 foundation-android-version = "1.6.7"
+sqlite-version = "2.5.0-SNAPSHOT"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose-version" }
@@ -34,13 +36,10 @@ androidx-datastore-core-okio = { module = "androidx.datastore:datastore-core-oki
 androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-version" }
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidx-room" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }
 com-codingfeline-buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "com-codingfeline-buildkonfig-gradle-plugin-version" }
 com-google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "com-google-android-gms-play-services-location-version" }
-com-squareup-sqldelight-android-driver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-coroutines-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-gradle-plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight-version" }
-com-squareup-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight-version" }
 dev-icerock-moko-permissions = { module = "dev.icerock.moko:permissions", version.ref = "dev-icerock-moko-permissions-version" }
 dev-icerock-moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "dev-icerock-moko-permissions-version" }
 io-insert-koin-android = { module = "io.insert-koin:koin-android", version.ref = "io-insert-koin-core-version" }
@@ -57,13 +56,16 @@ org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kot
 org-jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "org-jetbrains-kotlinx-datetime-version" }
 androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundation-android-version" }
+sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite-version" }
 
 [plugins]
 com-android-application-plugin = { id = "com.android.application", version.ref = "agp-version" }
 com-android-library-plugin = { id = "com.android.library", version.ref = "agp-version" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 org-jetbrains-compose-plugin = { id = "org.jetbrains.compose", version.ref = "compose-plugin-version" }
 org-jetbrains-kotlin-serialization-plugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
 org-jetbrains-kotlin-multiplatform-plugin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "org-jetbrains-kotlin-multiplatform-version" }
+room = { id = "androidx.room", version.ref = "androidx-room" }
 
 [bundles]
 datastore = [
@@ -79,8 +81,4 @@ ktor = [
 moko-permissions = [
     "dev-icerock-moko-permissions",
     "dev-icerock-moko-permissions-compose",
-]
-sqldelight = [
-    "com-squareup-sqldelight-runtime",
-    "com-squareup-sqldelight-coroutines-extensions",
 ]

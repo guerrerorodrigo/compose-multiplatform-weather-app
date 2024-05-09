@@ -24,6 +24,8 @@ import dev.icerock.moko.permissions.Permission
 import dev.icerock.moko.permissions.PermissionState
 import dev.icerock.moko.permissions.PermissionsController
 import dev.icerock.moko.permissions.compose.BindEffect
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -107,7 +109,7 @@ class MainViewModel : ViewModel(), KoinComponent {
     private fun shouldShowSnackbar(location: String) {
         viewModelScope.launch {
             val favoriteLocation = favoriteLocationByIdInteractor(location)
-            if (favoriteLocation.isEmpty()) {
+            if (favoriteLocation == null) {
                 onEvent(MainEvent.ShowSaveLocationSnackbar(location))
             }
         }
@@ -133,7 +135,7 @@ class MainViewModel : ViewModel(), KoinComponent {
     }
 
     private fun saveLocation(location: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             saveFavoriteLocationInteractor(location)
         }
     }

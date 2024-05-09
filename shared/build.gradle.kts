@@ -6,8 +6,9 @@ plugins {
     alias(libs.plugins.com.android.library.plugin)
     alias(libs.plugins.org.jetbrains.compose.plugin)
     alias(libs.plugins.org.jetbrains.kotlin.serialization.plugin)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
     id("com.codingfeline.buildkonfig")
-    id("com.squareup.sqldelight")
 }
 
 kotlin {
@@ -50,7 +51,9 @@ kotlin {
                 implementation(libs.io.insert.koin.core)
                 implementation(libs.io.insert.koin.compose)
 
-                implementation(libs.bundles.sqldelight)
+                implementation(libs.androidx.room.runtime)
+                implementation(libs.sqlite.bundled)
+
                 implementation(libs.bundles.ktor)
                 implementation(libs.media.kamel.image)
                 implementation(libs.bundles.datastore)
@@ -66,7 +69,6 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.com.squareup.sqldelight.android.driver)
                 implementation(libs.androidx.appcompat)
                 implementation(libs.androidx.activity.compose)
                 implementation(libs.io.ktor.client.android)
@@ -80,7 +82,6 @@ kotlin {
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependencies {
-                implementation(libs.com.squareup.sqldelight.native.driver)
                 implementation(libs.io.ktor.client.darwin)
             }
             dependsOn(commonMain)
@@ -120,13 +121,6 @@ android {
     }
 }
 
-sqldelight {
-    database("AppDatabase") {
-        packageName = "com.rodrigoguerrero.mywheather.database"
-        sourceFolders = listOf("sqldelight")
-    }
-}
-
 dependencies {
     implementation(libs.androidx.core)
 }
@@ -141,4 +135,15 @@ buildkonfig {
     defaultConfigs {
         buildConfigField(STRING, "API_KEY", apiKey)
     }
+}
+
+dependencies {
+    add("kspAndroid", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    add("kspIosX64", libs.androidx.room.compiler)
+    add("kspIosArm64", libs.androidx.room.compiler)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
