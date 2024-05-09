@@ -28,14 +28,13 @@ import com.rodrigoguerrero.myweather.ui.models.events.TomorrowWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.TomorrowWeatherUiState
 import com.rodrigoguerrero.myweather.ui.viewmodels.TomorrowWeatherViewModel
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import myweather.shared.generated.resources.Res
 import myweather.shared.generated.resources.precipitation
 import myweather.shared.generated.resources.tomorrow_rain_chance
 import myweather.shared.generated.resources.total_precipitation_mm
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 
 @Composable
 fun TomorrowWeatherScreen(
@@ -43,11 +42,7 @@ fun TomorrowWeatherScreen(
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val viewModel = getViewModel(
-        key = "tomorrow-weather-screen",
-        factory = viewModelFactory { TomorrowWeatherViewModel() }
-    )
-
+    val viewModel = koinInject<TomorrowWeatherViewModel>()
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(mainUiState.forecast) {

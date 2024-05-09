@@ -1,14 +1,17 @@
+@file:OptIn(ExperimentalResourceApi::class)
+
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
+import androidx.lifecycle.ViewModel
 import com.rodrigoguerrero.myweather.ui.models.events.TodayWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.isError
 import com.rodrigoguerrero.myweather.ui.models.uistate.isLoading
 import com.rodrigoguerrero.myweather.ui.models.uistate.setResponse
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateQuery
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 class TodayWeatherViewModel : ViewModel() {
 

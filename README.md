@@ -15,7 +15,7 @@ Weather app using Kotlin Multiplatform and Compose Multiplatform.
 ## Libraries
 - [Kamel](https://github.com/Kamel-Media/Kamel) - Used to load remote images.
 - [Compose navigation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html) - Used for compose navigation.
-- [moko-mvvm](https://github.com/icerockdev/moko-mvvm) - Used to provide ViewModel implementations.
+- [lifecycle viewmodel](https://developer.android.com/reference/androidx/lifecycle/ViewModel) - Used to provide ViewModel implementations.
 - [SqlDelight](https://github.com/cashapp/sqldelight) - Used for local database.
 - [DataStore](https://developer.android.com/jetpack/androidx/releases/datastore) - Used to save preferences.
 - [moko-permissions](https://github.com/icerockdev/moko-permissions) - Handle user permissions in both platforms.

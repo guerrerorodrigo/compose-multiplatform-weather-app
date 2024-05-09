@@ -27,7 +27,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -36,14 +35,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.rodrigoguerrero.myweather.ui.models.events.SearchEvent
 import com.rodrigoguerrero.myweather.ui.viewmodels.SearchViewModel
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import myweather.shared.generated.resources.Res
 import myweather.shared.generated.resources.manage_locations
 import myweather.shared.generated.resources.saved_locations
 import myweather.shared.generated.resources.search_hint
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 
 @Composable
 fun SearchScreen(
@@ -51,10 +49,7 @@ fun SearchScreen(
     modifier: Modifier = Modifier,
 ) {
     val focusRequester = remember { FocusRequester() }
-    val viewModel = getViewModel(
-        key = "search-screen",
-        factory = viewModelFactory { SearchViewModel() }
-    )
+    val viewModel = koinInject<SearchViewModel>()
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -118,7 +113,7 @@ fun SearchScreen(
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalResourceApi::class)
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun FavoriteLocationsHeader(
     modifier: Modifier = Modifier,

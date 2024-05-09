@@ -15,8 +15,7 @@ import com.rodrigoguerrero.myweather.ui.components.Loader
 import com.rodrigoguerrero.myweather.ui.models.events.FutureWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
 import com.rodrigoguerrero.myweather.ui.viewmodels.FutureDaysWeatherViewModel
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
+import org.koin.compose.koinInject
 
 @Composable
 fun FutureDaysWeatherScreen(
@@ -24,11 +23,7 @@ fun FutureDaysWeatherScreen(
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val viewModel = getViewModel(
-        key = "future-weather-screen",
-        factory = viewModelFactory { FutureDaysWeatherViewModel() }
-    )
-
+    val viewModel = koinInject<FutureDaysWeatherViewModel>()
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(mainUiState.query, mainUiState.forecast) {

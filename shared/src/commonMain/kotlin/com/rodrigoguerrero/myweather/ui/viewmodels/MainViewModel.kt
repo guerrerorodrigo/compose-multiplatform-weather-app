@@ -1,6 +1,8 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.rodrigoguerrero.myweather.data.local.datastore.PreferencesRepository
 import com.rodrigoguerrero.myweather.data.remote.models.AirQuality
 import com.rodrigoguerrero.myweather.data.remote.models.WeatherAlerts
@@ -16,7 +18,6 @@ import com.rodrigoguerrero.myweather.ui.models.uistate.isError
 import com.rodrigoguerrero.myweather.ui.models.uistate.isLoading
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateForecast
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateQuery
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import dev.icerock.moko.permissions.DeniedAlwaysException
 import dev.icerock.moko.permissions.DeniedException
 import dev.icerock.moko.permissions.Permission

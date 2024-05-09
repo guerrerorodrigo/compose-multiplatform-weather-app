@@ -25,12 +25,10 @@ import com.rodrigoguerrero.myweather.ui.components.SectionTitleItem
 import com.rodrigoguerrero.myweather.ui.components.TotalDailyRainVolume
 import com.rodrigoguerrero.myweather.ui.components.WindItem
 import com.rodrigoguerrero.myweather.ui.components.WindTodayItem
-import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
 import com.rodrigoguerrero.myweather.ui.models.events.TodayWeatherEvent
+import com.rodrigoguerrero.myweather.ui.models.uistate.MainUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
 import com.rodrigoguerrero.myweather.ui.viewmodels.TodayWeatherViewModel
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import myweather.shared.generated.resources.Res
 import myweather.shared.generated.resources.moonrise
 import myweather.shared.generated.resources.moonrise_moonset
@@ -43,6 +41,7 @@ import myweather.shared.generated.resources.today_rain_chance
 import myweather.shared.generated.resources.total_precipitation_mm
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 
 @Composable
 fun TodayWeatherScreen(
@@ -50,10 +49,7 @@ fun TodayWeatherScreen(
     onRetry: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val viewModel = getViewModel(
-        key = "today-weather-screen",
-        factory = viewModelFactory { TodayWeatherViewModel() }
-    )
+    val viewModel = koinInject<TodayWeatherViewModel>()
 
     val state by viewModel.state.collectAsState()
 

@@ -19,12 +19,6 @@ kotlin {
         }
     }
 
-    targets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget::class.java).all {
-        binaries.withType(org.jetbrains.kotlin.gradle.plugin.mpp.Framework::class.java).all {
-            export(libs.dev.icerock.moko.mvvm.core.get())
-        }
-    }
-
     listOf(
         iosX64(),
         iosArm64(),
@@ -47,16 +41,20 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
 
-                implementation(libs.bundles.sqldelight)
-                implementation(libs.org.jetbrains.kotlinx.datetime)
-                implementation(libs.bundles.ktor)
-                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
-                implementation(libs.media.kamel.image)
-                implementation(libs.bundles.datastore)
-                implementation(libs.io.insert.koin.core)
+                implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.navigation.compose)
 
-                api(libs.bundles.moko.mvvm)
+                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
+                implementation(libs.org.jetbrains.kotlinx.datetime)
+
+                implementation(libs.io.insert.koin.core)
+                implementation(libs.io.insert.koin.compose)
+
+                implementation(libs.bundles.sqldelight)
+                implementation(libs.bundles.ktor)
+                implementation(libs.media.kamel.image)
+                implementation(libs.bundles.datastore)
+
                 api(libs.bundles.moko.permissions)
 
             }

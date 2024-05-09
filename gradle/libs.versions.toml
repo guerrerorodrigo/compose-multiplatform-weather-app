@@ -6,12 +6,13 @@ androidx-compose-animation-version = "1.6.7"
 androidx-compose-ui-version = "1.6.7"
 androidx-core-version = "1.13.1"
 androidx-datastore-version = "1.1.1"
+androidx-lifecycle = "2.8.0-rc01"
 com-codingfeline-buildkonfig-gradle-plugin-version = "0.15.1"
 com-google-android-gms-play-services-location-version = "21.2.0"
 compose-plugin-version = "1.6.2"
-dev-icerock-moko-mvvm-version = "0.16.1"
 dev-icerock-moko-permissions-version = "0.17.0"
 io-insert-koin-core-version = "3.5.0"
+io-insert-koin-compose = "1.2.0-alpha3"
 kotlin-version = "1.9.23"
 ktor-version = "2.3.8"
 media-kamel-image-version = "0.9.0"
@@ -31,6 +32,7 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", versi
 androidx-core = { module = "androidx.core:core", version.ref = "androidx-core-version" }
 androidx-datastore-core-okio = { module = "androidx.datastore:datastore-core-okio", version.ref = "androidx-datastore-version" }
 androidx-datastore-preferences-core = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-version" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
 com-codingfeline-buildkonfig-gradle-plugin = { module = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin", version.ref = "com-codingfeline-buildkonfig-gradle-plugin-version" }
 com-google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "com-google-android-gms-play-services-location-version" }
@@ -39,13 +41,10 @@ com-squareup-sqldelight-coroutines-extensions = { module = "com.squareup.sqldeli
 com-squareup-sqldelight-gradle-plugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight-version" }
 com-squareup-sqldelight-native-driver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight-version" }
 com-squareup-sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight-version" }
-dev-icerock-moko-mvvm-compose = { module = "dev.icerock.moko:mvvm-compose", version.ref = "dev-icerock-moko-mvvm-version" }
-dev-icerock-moko-mvvm-core = { module = "dev.icerock.moko:mvvm-core", version.ref = "dev-icerock-moko-mvvm-version" }
-dev-icerock-moko-mvvm-flow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "dev-icerock-moko-mvvm-version" }
-dev-icerock-moko-mvvm-flow-compose = { module = "dev.icerock.moko:mvvm-flow-compose", version.ref = "dev-icerock-moko-mvvm-version" }
 dev-icerock-moko-permissions = { module = "dev.icerock.moko:permissions", version.ref = "dev-icerock-moko-permissions-version" }
 dev-icerock-moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "dev-icerock-moko-permissions-version" }
 io-insert-koin-android = { module = "io.insert-koin:koin-android", version.ref = "io-insert-koin-core-version" }
+io-insert-koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "io-insert-koin-compose" }
 io-insert-koin-core = { module = "io.insert-koin:koin-core", version.ref = "io-insert-koin-core-version" }
 io-ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor-version" }
 io-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor-version" }
@@ -76,12 +75,6 @@ ktor = [
     "io-ktor-client-resources",
     "io-ktor-client-content-negotiation",
     "io-ktor-serialization-kotlinx-json",
-]
-moko-mvvm = [
-    "dev-icerock-moko-mvvm-core",
-    "dev-icerock-moko-mvvm-compose",
-    "dev-icerock-moko-mvvm-flow",
-    "dev-icerock-moko-mvvm-flow-compose",
 ]
 moko-permissions = [
     "dev-icerock-moko-permissions",

@@ -28,14 +28,13 @@ import com.rodrigoguerrero.myweather.ui.components.LocationTopBar
 import com.rodrigoguerrero.myweather.ui.models.events.MainEvent
 import com.rodrigoguerrero.myweather.ui.models.uimodels.tabs
 import com.rodrigoguerrero.myweather.ui.viewmodels.MainViewModel
-import dev.icerock.moko.mvvm.compose.getViewModel
-import dev.icerock.moko.mvvm.compose.viewModelFactory
 import kotlinx.coroutines.launch
 import myweather.shared.generated.resources.Res
 import myweather.shared.generated.resources.add
 import myweather.shared.generated.resources.add_location_to_list
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalResourceApi::class)
 @Composable
@@ -48,10 +47,7 @@ fun MainScreen(
     val snackbarAction = stringResource(Res.string.add)
     val pagerState = rememberPagerState { 3 }
     val coroutineScope = rememberCoroutineScope()
-    val viewModel = getViewModel(
-        key = "main-screen",
-        factory = viewModelFactory { MainViewModel() }
-    )
+    val viewModel = koinInject<MainViewModel>()
     val state by viewModel.state.collectAsState()
 
     LaunchedEffect(state.locationToSave) {

@@ -1,5 +1,7 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.rodrigoguerrero.myweather.data.local.datastore.PreferencesRepository
 import com.rodrigoguerrero.myweather.domain.interactors.search.DeleteFavoriteLocationInteractor
 import com.rodrigoguerrero.myweather.domain.interactors.search.RetrieveFavoriteLocationsInteractor
@@ -9,7 +11,6 @@ import com.rodrigoguerrero.myweather.ui.models.uimodels.FavoriteLocation
 import com.rodrigoguerrero.myweather.ui.models.events.SearchEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.SearchUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.toUi
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

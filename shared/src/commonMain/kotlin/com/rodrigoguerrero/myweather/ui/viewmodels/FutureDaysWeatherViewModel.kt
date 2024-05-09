@@ -1,11 +1,11 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
+import androidx.lifecycle.ViewModel
 import com.rodrigoguerrero.myweather.ui.models.uistate.FutureDaysWeatherUiState
 import com.rodrigoguerrero.myweather.ui.models.events.FutureWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.isError
 import com.rodrigoguerrero.myweather.ui.models.uistate.isLoading
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateDays
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
