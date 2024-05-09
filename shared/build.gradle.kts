@@ -11,14 +11,11 @@ plugins {
 }
 
 kotlin {
-    android {
+    androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "17"
             }
-        }
-        sourceSets {
-            getByName("androidMain").kotlin.srcDirs("build/generated/moko/androidMain/src")
         }
     }
 
