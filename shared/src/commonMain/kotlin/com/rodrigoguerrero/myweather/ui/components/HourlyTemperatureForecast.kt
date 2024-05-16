@@ -9,9 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.rodrigoguerrero.myweather.ui.models.uimodels.HourUi
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
 import myweather.shared.generated.resources.Res
 import myweather.shared.generated.resources.temperature_degree_symbol
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -32,8 +31,8 @@ fun HourlyForecast(
             text = stringResource(Res.string.temperature_degree_symbol, hourlyForecast.temperature),
             style = MaterialTheme.typography.labelMedium,
         )
-        KamelImage(
-            resource = asyncPainterResource(data = hourlyForecast.iconUrl),
+        AsyncImage(
+            model = hourlyForecast.iconUrl,
             contentDescription = null,
             modifier = Modifier.size(40.dp),
         )

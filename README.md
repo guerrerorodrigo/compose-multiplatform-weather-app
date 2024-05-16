@@ -13,7 +13,7 @@ Weather app using Kotlin Multiplatform and Compose Multiplatform.
 [Simulator Screen Recording - device-IPhone13Pro - 2023-08-01 at 12.43.40.webm](https://github.com/guerrerorodrigo/compose-multiplatform-weather-app/assets/77965057/2fa41b2a-addc-4a3a-b755-a640447ec44a)
 
 ## Libraries
-- [Kamel](https://github.com/Kamel-Media/Kamel) - Used to load remote images.
+- [Coil](https://coil-kt.github.io/coil/upgrading_to_coil3/) - Used to load remote images.
 - [Compose navigation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html) - Used for compose navigation.
 - [lifecycle viewmodel](https://developer.android.com/reference/androidx/lifecycle/ViewModel) - Used to provide ViewModel implementations.
 - [Room](https://developer.android.com/kotlin/multiplatform/room) - Used for local database.

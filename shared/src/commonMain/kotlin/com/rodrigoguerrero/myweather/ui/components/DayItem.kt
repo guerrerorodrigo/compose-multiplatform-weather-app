@@ -13,9 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.rodrigoguerrero.myweather.ui.models.uimodels.DayUi
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
 import myweather.shared.generated.resources.Res
 import myweather.shared.generated.resources.temperature_degree_symbol
 import myweather.shared.generated.resources.today
@@ -50,8 +49,8 @@ fun DayItem(
             )
         }
 
-        KamelImage(
-            resource = asyncPainterResource(data = day.iconUrl),
+        AsyncImage(
+            model = day.iconUrl,
             contentDescription = null,
             modifier = Modifier.size(40.dp),
         )

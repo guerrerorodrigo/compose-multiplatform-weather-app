@@ -55,8 +55,8 @@ kotlin {
                 implementation(libs.sqlite.bundled)
 
                 implementation(libs.bundles.ktor)
-                implementation(libs.media.kamel.image)
                 implementation(libs.bundles.datastore)
+                implementation(libs.bundles.coil)
 
                 api(libs.bundles.moko.permissions)
 

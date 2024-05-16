@@ -12,9 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
 
 @Composable
 fun CurrentWeatherItem(
@@ -36,8 +35,8 @@ fun CurrentWeatherItem(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            KamelImage(
-                resource = asyncPainterResource(data = todayWeatherUiState.conditionIconUrl),
+            AsyncImage(
+                model = todayWeatherUiState.conditionIconUrl,
                 contentDescription = null,
                 modifier = Modifier.size(96.dp),
             )

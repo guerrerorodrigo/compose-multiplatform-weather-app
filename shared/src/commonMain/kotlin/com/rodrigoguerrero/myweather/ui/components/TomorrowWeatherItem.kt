@@ -13,9 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import com.rodrigoguerrero.myweather.ui.models.uistate.TomorrowWeatherUiState
-import io.kamel.image.KamelImage
-import io.kamel.image.asyncPainterResource
 import myweather.shared.generated.resources.Res
 import myweather.shared.generated.resources.chance_rain_percentage
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -57,8 +56,8 @@ fun TomorrowWeatherItem(
                     style = MaterialTheme.typography.labelMedium.copy(color = Color.Cyan),
                 )
             }
-            KamelImage(
-                resource = asyncPainterResource(data = state.conditionIconUrl),
+            AsyncImage(
+                model = state.conditionIconUrl,
                 contentDescription = null,
                 modifier = Modifier.size(96.dp),
             )

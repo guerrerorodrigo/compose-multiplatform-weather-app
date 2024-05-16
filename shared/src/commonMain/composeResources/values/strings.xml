@@ -54,7 +54,7 @@
     <string name="saved_locations">Saved Locations</string>
     <string name="manage_locations">Manage</string>
     <string name="precipitation">Precipitation</string>
-    <string name="min_max_temperatures">Day %1$°\u2191 · Night %1$°\u2193</string>
+    <string name="min_max_temperatures">Day %1$s°\u2191 · Night %1$s°\u2193</string>
     <string name="chance_of_rain">Chance of rain</string>
     <string name="sunrise_sunset_tomorrow_details">Sunrise/sunset</string>
     <string name="max_wind_speed">Max: %1$s km/h</string>
