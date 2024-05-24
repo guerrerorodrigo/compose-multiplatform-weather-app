@@ -11,8 +11,8 @@ android {
         applicationId = "com.rodrigoguerrero.myweather"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.0.0"
     }
     buildFeatures {
         compose = true
