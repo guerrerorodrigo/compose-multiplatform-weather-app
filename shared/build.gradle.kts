@@ -127,7 +127,7 @@ dependencies {
 
 buildkonfig {
     packageName = "com.rodrigoguerrero.myweather"
-    val apiKey: String = gradleLocalProperties(rootDir).getProperty("apiKey")
+    val apiKey: String = "api key"//gradleLocalProperties(rootDir).getProperty("apiKey")
 
     require(apiKey.isNotEmpty()) {
         "Register your api key from https://www.weatherapi.com/ and place it in local.properties as `apiKey`"
