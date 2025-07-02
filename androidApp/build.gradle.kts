@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.rodrigoguerrero.myweather.android"
-    compileSdk = 34
+    compileSdk = 36
     defaultConfig {
         applicationId = "com.rodrigoguerrero.myweather"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 5
+        targetSdk = 36
+        versionCode = 6
         versionName = "1.0.2"
     }
     buildFeatures {
